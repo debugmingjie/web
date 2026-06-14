@@ -1,0 +1,593 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Wall of Fame | The Debug Lab</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-tint": "#a04100",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "outline-variant": "#e2bfb0",
+              "tertiary-fixed": "#e2e2e2",
+              tertiary: "#5d5f5f",
+              "on-primary-fixed": "#351000",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7a3000",
+              "surface-variant": "#e4e2e2",
+              "surface-container-highest": "#e4e2e2",
+              "secondary-container": "#e2dfde",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-tertiary-container": "#2f3132",
+              "tertiary-container": "#989999",
+              "surface-container": "#efeded",
+              "on-background": "#1b1c1c",
+              "surface-dim": "#dbdad9",
+              "secondary-fixed": "#e5e2e1",
+              "primary-fixed": "#ffdbcc",
+              outline: "#8e7164",
+              secondary: "#5f5e5e",
+              "on-surface": "#1b1c1c",
+              "surface-container-high": "#e9e8e7",
+              "on-tertiary-fixed": "#1a1c1c",
+              "surface-bright": "#fbf9f8",
+              "inverse-on-surface": "#f2f0f0",
+              "inverse-primary": "#ffb693",
+              background: "#fbf9f8",
+              surface: "#fbf9f8",
+              "surface-container-low": "#f5f3f3",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-secondary-container": "#636262",
+              error: "#ba1a1a",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#ff6b00",
+              "on-primary-container": "#572000",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#c8c6c5",
+              "primary-fixed-dim": "#ffb693",
+              "on-error": "#ffffff",
+              "on-surface-variant": "#5a4136",
+              "on-secondary-fixed-variant": "#474746",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              primary: "#a04100",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              md: "24px",
+              lg: "40px",
+              xs: "8px",
+              "margin-mobile": "16px",
+              base: "4px",
+              "margin-desktop": "48px",
+              xl: "64px",
+              gutter: "24px",
+              sm: "16px",
+            },
+            fontFamily: {
+              "display-lg": ["Outfit"],
+              "headline-md": ["Outfit"],
+              "headline-lg": ["Outfit"],
+              "label-md": ["Outfit"],
+              "body-md": ["Outfit"],
+              "body-lg": ["Outfit"],
+              caption: ["Outfit"],
+              "headline-lg-mobile": ["Outfit"],
+            },
+            fontSize: {
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "headline-lg": [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "14px",
+                { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "32px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: #f9f9f9;
+        color: #1b1c1c;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid #eeeeee;
+      }
+      .orange-glow:hover {
+        box-shadow: 0px 4px 20px rgba(160, 65, 0, 0.15);
+        border-color: #a04100;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background">
+    <!-- TopNavBar -->
+    <header
+      class="w-full sticky top-0 z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline transition-all duration-200 ease-in-out h-20"
+    >
+      <div
+        class="max-w-7xl mx-auto px-margin-desktop flex items-center justify-between h-full"
+      >
+        <div class="flex items-center gap-lg">
+          <a
+            class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed"
+            href="index.html"
+            >The Debug Lab</a
+          >
+          <nav class="hidden md:flex items-center gap-md">
+            <a
+              class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              href="marketplace.html"
+              >Marketplace</a
+            >
+            <a
+              class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 transition-colors duration-200"
+              href="walloffame.html"
+              >Wall of Fame</a
+            >
+            <a
+              class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              href="leaderboard.html"
+              >Leaderboard</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-sm">
+          <button
+            class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors"
+          >
+            Coach Sign In
+          </button>
+          <button
+            class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    </header>
+    <main
+      class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop space-y-xl py-xl"
+    >
+      <!-- Hero Section -->
+      <section class="text-center space-y-sm max-w-3xl mx-auto">
+        <h1 class="font-display-lg text-display-lg text-on-background">
+          Wall of Fame
+        </h1>
+        <p class="font-body-lg text-body-lg text-secondary">
+          Celebrating the brilliant minds behind our most innovative creations.
+          These top developers and creators are shaping the future, one line of
+          code at a time.
+        </p>
+      </section>
+      <!-- Top Innovators Leaderboard -->
+      <section class="space-y-lg">
+        <div class="flex justify-between items-end">
+          <div class="space-y-base">
+            <h2 class="font-headline-lg text-headline-lg text-on-background">
+              Top Innovators
+            </h2>
+            <p class="font-body-md text-body-md text-secondary">
+              Our current ranking based on project impact and community
+              contribution.
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-end">
+          <!-- 2nd Place -->
+          <div
+            class="order-2 md:order-1 bg-surface-container-lowest border border-outline-variant p-lg rounded-xl text-center space-y-md orange-glow transition-all"
+          >
+            <div class="relative inline-block">
+              <img
+                class="w-24 h-24 rounded-full border-4 border-outline-variant object-cover"
+                data-alt="A portrait of a young female student with a bright, intelligent expression. She is wearing a modern hoodie in a minimalist, high-contrast studio setting with soft directional lighting. The color palette is composed of clean whites and soft grays, creating a professional yet approachable look for a student leader."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx-F-TIWeOgRTouCYjzlISmX1xMFam7lGDSu2h19oSssp1FbDYLC9e8MgbHVwc3B69svNy_laHE9pxJ-veeuFnX1xHMT-1qyL01OWMSWm3xkeLhf7b8bWDFVYg7EzJvttuKGn3QGNl3NdiaFuFExBL7_ZVyB79j5aeoRI6mMQW73TVS7_JAnA9pJFx81luegiQxSBSy5HGEKcXucFagJ3QJY0plskhsRhy2WaDPvhB8xqfjdb8WOGg_eKj41m1n9vvYXXYEWUEzVk"
+              />
+              <span
+                class="absolute -bottom-2 -right-2 bg-secondary text-on-primary w-8 h-8 flex items-center justify-center rounded-full font-bold"
+                >2</span
+              >
+            </div>
+            <div>
+              <h3 class="font-headline-md text-headline-md">Sarah Jenkins</h3>
+              <p class="font-body-md text-body-md text-primary">
+                Quantum Chess Engine
+              </p>
+            </div>
+            <div class="flex justify-center gap-xs">
+              <span class="material-symbols-outlined text-surface-tint"
+                >military_tech</span
+              >
+              <span class="font-label-md text-label-md">2,450 Points</span>
+            </div>
+          </div>
+          <!-- 1st Place -->
+          <div
+            class="order-1 md:order-2 bg-surface-container-lowest border-2 border-primary p-xl rounded-xl text-center space-y-md shadow-xl scale-105 z-10"
+          >
+            <div class="relative inline-block">
+              <div class="absolute -top-8 left-1/2 -translate-x-1/2">
+                <span
+                  class="material-symbols-outlined text-primary-container text-5xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >workspace_premium</span
+                >
+              </div>
+              <img
+                class="w-32 h-32 rounded-full border-4 border-primary object-cover"
+                data-alt="A medium close-up of a diverse male creator smiling confidently at the camera. The background is a blurred, high-tech lab environment with warm, professional lighting. The image emphasizes high contrast and energy, capturing the visionary spirit of a top-performing innovator in a modern educational setting."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgE0J8CUv2CkZFAiklz82sIURhG2dZMaXPA99YEWrTr2Ll4JNFRHKpCpoJZR3gSM0W6rqwZ3v3Hp9rto34rAesu-U_wfiGBosRObZ_WDmFKSX6Gk_vOOz4u5HxzQpuu8a_1e_QnWGmnaZZJubdTRMkIKylqZrdSukN2VL1N5G1hHGX9hGPkvPmCXhjHpld8ffUor8vA8Hv6g56t6wLUFnuTThSKU70fvnkTwrYkZicePKr5bh2s5Ds54prkw2Xj6QjtcJoL0eRaU4"
+              />
+              <span
+                class="absolute -bottom-2 -right-2 bg-primary text-on-primary w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg"
+                >1</span
+              >
+            </div>
+            <div>
+              <h3 class="font-headline-md text-headline-md font-bold">
+                Marcus Chen
+              </h3>
+              <p class="font-body-md text-body-md text-primary">
+                Autonomous Delivery Drone
+              </p>
+            </div>
+            <div class="flex justify-center gap-xs">
+              <span class="material-symbols-outlined text-primary">stars</span>
+              <span class="font-label-md text-label-md text-primary"
+                >3,120 Points</span
+              >
+            </div>
+          </div>
+          <!-- 3rd Place -->
+          <div
+            class="order-3 bg-surface-container-lowest border border-outline-variant p-lg rounded-xl text-center space-y-md orange-glow transition-all"
+          >
+            <div class="relative inline-block">
+              <img
+                class="w-24 h-24 rounded-full border-4 border-outline-variant object-cover"
+                data-alt="A portrait of a young student with a focus on creativity and technical skill. The lighting is crisp and modern, highlighting their features against a simple, light-colored background. The overall aesthetic is clean and high-contrast, fitting the professional 'Wall of Fame' look of the platform."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGiUotxwB8GhhJduCP-TViyzEaESzZ6f01iIkcLtEp2U29wLXfzfa6vD81rnfXiF9MyrcVagQRFRTF-4YuDoM2nzdee3mxYJRaQnU9heeDmL4hLvRacAtcnXnIbx2cZAhGEYagyvsZvR4tnNayyXwHM_FXPTDmFOiMpXzNb5UzdRDy0oRQSeXQDG7Luhwbx9zPQBU_AM940d00evV0Dc0kpHH03RA5KV3YsNZHrHgDkShnrIXRhcRX_xnjzFcRQJQ9BxB4o_megDk"
+              />
+              <span
+                class="absolute -bottom-2 -right-2 bg-outline text-on-primary w-8 h-8 flex items-center justify-center rounded-full font-bold"
+                >3</span
+              >
+            </div>
+            <div>
+              <h3 class="font-headline-md text-headline-md">Leo Rodriguez</h3>
+              <p class="font-body-md text-body-md text-primary">
+                AR Classroom Helper
+              </p>
+            </div>
+            <div class="flex justify-center gap-xs">
+              <span class="material-symbols-outlined text-surface-tint"
+                >emoji_events</span
+              >
+              <span class="font-label-md text-label-md">1,980 Points</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Project Showcase Grid -->
+      <section class="space-y-lg">
+        <h2
+          class="font-headline-lg text-headline-lg text-on-background border-l-4 border-primary pl-md"
+        >
+          Project Showcase
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+          <!-- Card 1 -->
+          <div
+            class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden orange-glow transition-all"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                alt="Unity Development Scene"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida/AP1WRLsEQAWUkDGF2nE0THvTuwnV058sfqlmdyc_b3x_px_LeM7Z09AckiMN0BsqoF80y6NTeDyZh_-qZswGOk6fdzCQcd1YbngbHuslizw3vJFBDviGZQWNJLuZtetqBFOTkUheiWwJOuZ0HEzWQQy5N_I29TF2eBxDJK91dDZdnJZYi2bA_P5dJyjvbYE5jP4BLxit2ls9oRzVv14LJIw3XQUm1a8QMDUKBmTgBCdWRA7FeEgvYA1blXB4O2g"
+              />
+            </div>
+            <div class="p-md space-y-sm">
+              <div class="flex justify-between items-start">
+                <h3 class="font-headline-md text-headline-md">
+                  Hyper-Realistic Forest VR
+                </h3>
+                <span
+                  class="material-symbols-outlined text-primary cursor-pointer"
+                  >favorite</span
+                >
+              </div>
+              <p class="font-body-md text-body-md text-secondary">
+                by <span class="font-bold text-on-background">Elena Vance</span>
+              </p>
+              <a
+                class="inline-flex items-center gap-xs font-label-md text-label-md text-primary hover:gap-sm transition-all"
+                href="#"
+              >
+                View Project
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden orange-glow transition-all"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                alt="Gaming Setup"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida/AP1WRLuLyEytw_pUXw3G-oSR6LYY2yxyr4OBnzvURZZFRVYAvMsbQlpKihDGJwstOK6OGcB9ElUhdx3oVQeuUVBgs5w7YXC9uWj5P5xTYGNv57716f_vQ31KGPhGm2NcP2Y-ksQLjUh-vw8VihMCTU8TSmepHjryN9Hzu-ogw-9tZTTUp7nhn60gGcNe7Z8fphvBhg_EWcCvzhujc36D7oIgu398ZiSFKEx7Bwt4FUWf1wgaVCgDbB_RSSpeLY4"
+              />
+            </div>
+            <div class="p-md space-y-sm">
+              <div class="flex justify-between items-start">
+                <h3 class="font-headline-md text-headline-md">
+                  Cloud Gaming Optimizer
+                </h3>
+                <span
+                  class="material-symbols-outlined text-primary cursor-pointer"
+                  >favorite</span
+                >
+              </div>
+              <p class="font-body-md text-body-md text-secondary">
+                by <span class="font-bold text-on-background">David Kim</span>
+              </p>
+              <a
+                class="inline-flex items-center gap-xs font-label-md text-label-md text-primary hover:gap-sm transition-all"
+                href="#"
+              >
+                View Project
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden orange-glow transition-all"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                alt="3D Printing"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida/AP1WRLsCMMcOXM1EhAVv-_ULOfnx1reYqOXnWc2OEJDpPhNShoKxCYHv3wD30MmncIPcX8sGCHTTkjuCB2QA5FT-PKhv3lhNlTFNVGmm11H5FcNhJFsFEdsCjfpVs5_wvdQagBX4dELXtqjToozGOdA6XzPo-GyJFY1S7dMSvZbY5WlZ_ZpL0j5NXNDAVlBrBOJvz7eCmGx6-5UUBqry4n2RKuMx_nOV-heP7z-_jinFyBQGKAWi-N_md7Ia9IM"
+              />
+            </div>
+            <div class="p-md space-y-sm">
+              <div class="flex justify-between items-start">
+                <h3 class="font-headline-md text-headline-md">
+                  Eco-Engineered 3D Parts
+                </h3>
+                <span
+                  class="material-symbols-outlined text-primary cursor-pointer"
+                  >favorite</span
+                >
+              </div>
+              <p class="font-body-md text-body-md text-secondary">
+                by <span class="font-bold text-on-background">Maya Patel</span>
+              </p>
+              <a
+                class="inline-flex items-center gap-xs font-label-md text-label-md text-primary hover:gap-sm transition-all"
+                href="#"
+              >
+                View Project
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Achievement Badges -->
+      <section class="space-y-lg py-md">
+        <div class="text-center max-w-2xl mx-auto space-y-xs">
+          <h2 class="font-headline-lg text-headline-lg text-on-background">
+            Achievement Badges
+          </h2>
+          <p class="font-body-md text-body-md text-secondary">
+            Rare digital honors awarded for exceptional mastery in specialized
+            tracks.
+          </p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-md">
+          <!-- Badge 1 -->
+          <div
+            class="flex flex-col items-center p-md space-y-sm bg-surface-container-low rounded-xl w-40 text-center border border-outline-variant hover:border-primary-container transition-all"
+          >
+            <div
+              class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center text-on-primary"
+            >
+              <span
+                class="material-symbols-outlined text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >terminal</span
+              >
+            </div>
+            <span class="font-label-md text-label-md">Master Scripter</span>
+          </div>
+          <!-- Badge 2 -->
+          <div
+            class="flex flex-col items-center p-md space-y-sm bg-surface-container-low rounded-xl w-40 text-center border border-outline-variant hover:border-primary-container transition-all"
+          >
+            <div
+              class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center text-on-primary"
+            >
+              <span
+                class="material-symbols-outlined text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >smart_toy</span
+              >
+            </div>
+            <span class="font-label-md text-label-md">Robotics Guru</span>
+          </div>
+          <!-- Badge 3 -->
+          <div
+            class="flex flex-col items-center p-md space-y-sm bg-surface-container-low rounded-xl w-40 text-center border border-outline-variant hover:border-primary-container transition-all"
+          >
+            <div
+              class="w-20 h-20 bg-tertiary-container rounded-full flex items-center justify-center text-on-primary"
+            >
+              <span
+                class="material-symbols-outlined text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >view_in_ar</span
+              >
+            </div>
+            <span class="font-label-md text-label-md">3D Visionary</span>
+          </div>
+          <!-- Badge 4 -->
+          <div
+            class="flex flex-col items-center p-md space-y-sm bg-surface-container-low rounded-xl w-40 text-center border border-outline-variant hover:border-primary-container transition-all"
+          >
+            <div
+              class="w-20 h-20 bg-surface-tint rounded-full flex items-center justify-center text-on-primary"
+            >
+              <span
+                class="material-symbols-outlined text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >bolt</span
+              >
+            </div>
+            <span class="font-label-md text-label-md">Logic Wizard</span>
+          </div>
+          <!-- Badge 5 -->
+          <div
+            class="flex flex-col items-center p-md space-y-sm bg-surface-container-low rounded-xl w-40 text-center border border-outline-variant hover:border-primary-container transition-all"
+          >
+            <div
+              class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-on-primary"
+            >
+              <span
+                class="material-symbols-outlined text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >palette</span
+              >
+            </div>
+            <span class="font-label-md text-label-md">Creative Director</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full mt-xl bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center py-lg px-margin-desktop w-full max-w-[1440px] mx-auto gap-md"
+      >
+        <div class="space-y-xs text-center md:text-left">
+          <div
+            class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface"
+          >
+            The Debug Lab
+          </div>
+          <p
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim max-w-sm"
+          >
+            © 2024 The Debug Lab. Empowering the next generation of creators.
+          </p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-md">
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:underline decoration-primary transition-all duration-200"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:underline decoration-primary transition-all duration-200"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:underline decoration-primary transition-all duration-200"
+            href="#"
+            >Contact Us</a
+          >
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:underline decoration-primary transition-all duration-200"
+            href="#"
+            >Help Center</a
+          >
+        </div>
+        <div class="flex gap-sm">
+          <span
+            class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform"
+            >share</span
+          >
+          <span
+            class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform"
+            >language</span
+          >
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Micro-interaction for project cards
+      document.querySelectorAll(".group").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.transform = "translateY(-4px)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "translateY(0)";
+        });
+      });
+    </script>
+  </body>
+</html>
