@@ -1,0 +1,711 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Debug Lab | Holiday Workshop</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#303031",
+              "surface-container-high": "#e9e8e7",
+              primary: "#a04100",
+              "primary-fixed": "#ffdbcc",
+              "on-error-container": "#93000a",
+              "surface-dim": "#dbdad9",
+              "primary-fixed-dim": "#ffb693",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#a04100",
+              "on-secondary-fixed-variant": "#474746",
+              outline: "#8e7164",
+              "secondary-fixed-dim": "#c8c6c5",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "on-surface-variant": "#5a4136",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e4e2e2",
+              "on-tertiary-fixed": "#1a1c1c",
+              "surface-container-low": "#f5f3f3",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-primary-container": "#572000",
+              "inverse-primary": "#ffb693",
+              "inverse-on-surface": "#f2f0f0",
+              "tertiary-container": "#989999",
+              "on-primary": "#ffffff",
+              error: "#ba1a1a",
+              background: "#fbf9f8",
+              "outline-variant": "#e2bfb0",
+              "surface-bright": "#fbf9f8",
+              "surface-container-highest": "#e4e2e2",
+              "error-container": "#ffdad6",
+              "on-tertiary-container": "#2f3132",
+              "on-secondary-container": "#636262",
+              secondary: "#5f5e5e",
+              "on-background": "#1b1c1c",
+              "surface-container": "#efeded",
+              "secondary-container": "#e2dfde",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-error": "#ffffff",
+              "primary-container": "#ff6b00",
+              "secondary-fixed": "#e5e2e1",
+              surface: "#fbf9f8",
+              "on-primary-fixed-variant": "#7a3000",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#1b1c1c",
+              tertiary: "#5d5f5f",
+              "on-primary-fixed": "#351000",
+              "tertiary-fixed": "#e2e2e2",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              gutter: "24px",
+              base: "4px",
+              lg: "40px",
+              md: "24px",
+              sm: "16px",
+              xs: "8px",
+              "margin-desktop": "48px",
+              xl: "64px",
+              "margin-mobile": "16px",
+            },
+            fontFamily: {
+              "body-md": ["Outfit"],
+              "label-md": ["Outfit"],
+              "body-lg": ["Outfit"],
+              "display-lg": ["Outfit"],
+              "headline-lg-mobile": ["Outfit"],
+              "headline-lg": ["Outfit"],
+              caption: ["Outfit"],
+              "headline-md": ["Outfit"],
+            },
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "600" },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "32px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: #fbf9f8;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 191, 176, 0.3);
+      }
+    </style>
+  </head>
+  <body class="text-on-surface">
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/30 z-50"
+    >
+      <div
+        class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-[1440px] mx-auto"
+      >
+        <div
+          class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >terminal</span
+          >
+          The Debug Lab
+        </div>
+        <nav class="hidden md:flex gap-md items-center">
+          <a
+            class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1"
+            href="#"
+            >Marketplace</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Wall of Fame</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Leaderboard</a
+          >
+        </nav>
+        <div class="flex items-center gap-sm">
+          <button
+            class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all"
+          >
+            search
+          </button>
+          <a
+            class="hidden md:block font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Coach</a
+          ><a
+            class="hidden md:block bg-primary-container text-on-primary font-label-md text-label-md px-md py-xs rounded-lg active:scale-95 duration-200 shadow-sm"
+            href="#"
+            >Students</a
+          >
+        </div>
+      </div>
+    </header>
+    <main class="pt-20">
+      <!-- Hero Section -->
+      <section
+        class="relative overflow-hidden py-xl md:py-24 bg-surface-container-lowest"
+      >
+        <div
+          class="absolute inset-0 opacity-10 pointer-events-none"
+          style="
+            background-image: radial-gradient(
+              circle at 2px 2px,
+              #a04100 1px,
+              transparent 0
+            );
+            background-size: 48px 48px;
+          "
+        ></div>
+        <div
+          class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative grid grid-cols-1 lg:grid-cols-2 gap-xl items-center"
+        >
+          <div class="z-10 text-center lg:text-left">
+            <span
+              class="inline-block px-sm py-1 bg-primary/10 text-primary font-label-md text-label-md rounded-full mb-md"
+              >Winter 2024 Edition</span
+            >
+            <h1
+              class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-md leading-tight text-on-surface"
+            >
+              Code the <span class="text-primary-container">Holidays</span>
+            </h1>
+            <p
+              class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-xl mx-auto lg:mx-0"
+            >
+              Join our exclusive festive bootcamp where magic meets machinery.
+              Master robotics, 3D printing, and game dev in a high-energy
+              collaborative lab.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-md justify-center lg:justify-start"
+            >
+              <button
+                class="px-xl py-md bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-lg active:scale-95 transition-transform"
+              >
+                Claim Your Spot
+              </button>
+              <button
+                class="px-xl py-md bg-surface border-2 border-on-surface text-on-surface font-label-md text-label-md rounded-lg active:scale-95 transition-transform"
+              >
+                Explore Curriculum
+              </button>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="absolute -top-10 -right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"
+            ></div>
+            <div
+              class="glass-card rounded-xl p-base shadow-xl overflow-hidden border border-outline-variant/20"
+            >
+              <img
+                alt="Learning in Action"
+                class="w-full aspect-[4/3] object-cover rounded-lg"
+                data-alt="A dynamic workshop environment featuring a professional instructor guiding a young student through complex code on a whiteboard. The scene is bright and professional, characterized by a clean light-mode aesthetic with vibrant orange accents from a laptop cover. The atmosphere is energetic, focused, and highlights high-tech education in a minimalist, modern classroom space."
+                src="https://lh3.googleusercontent.com/aida/AP1WRLvCqV8Qj4FVl_F35G_B8uqoLQb8jynZugBYFk06kL7p3i7cE1AbdKGDchDsZnlSZUy5YjKLYmWf6gt23TpXGmQHhRGpG1AAjCUlr9SrZsVK8etv8cDf4pa0QtQbLikK9KzJyM6MPAhOO3JXkRevv0OCvc1xjBN4j5eYjlxZDT37cgl2LbqJp7IigjH4xKIneBtQe1JV9BNMOazUf9JQ2yGhmX1HYbFcgTq15G1-dD2vAGmvKt_F6KaapXs"
+                style="
+                  transform: translate(-0.953522px, -8.44942px) scale(1.05);
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Choose Your Winter Adventure Section -->
+      <section class="py-xl bg-surface">
+        <div
+          class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop"
+        >
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-xl gap-md"
+          >
+            <div>
+              <h2
+                class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface"
+              >
+                Choose Your Winter Adventure
+              </h2>
+              <p
+                class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-sm"
+              >
+                Three paths to mastery. Limited seats available for each
+                creative track.
+              </p>
+            </div>
+            <div class="flex gap-xs">
+              <button
+                class="p-base rounded-full border border-outline hover:bg-surface-container-high transition-colors"
+              >
+                <span class="material-symbols-outlined">chevron_left</span>
+              </button>
+              <button
+                class="p-base rounded-full border border-outline hover:bg-surface-container-high transition-colors"
+              >
+                <span class="material-symbols-outlined">chevron_right</span>
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+            <!-- Card 1: Robotic Reindeer -->
+            <div
+              class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:border-primary-container transition-all duration-300 flex flex-col"
+            >
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  alt="Robotic Reindeer"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  data-alt="A sophisticated robotic arm constructed from intricate white and light blue technical parts, set against a solid dark teal background. The design is minimalist and futuristic, emphasizing precise engineering and modular assembly. The lighting is crisp and clear, reflecting a premium-utility aesthetic that highlights every mechanical detail."
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLsI-VZ00YkfmOY00zQxUMlpOYyIxz6Y_2f3v0pcJQaqaX_XaPFE9gWtHsGoFvPDSaJpafZJ9adoAqhD7H9m9-SxyY0mj20kkfadQEBYnRqEryuOdN_ROqIQKGVmAInzoxkkk0kglx9s2v2jtTgeVEopxvXRH88bd2fQuJwHujku0XLS88JkJk8gPaxmZFv35eE91c7ONfF2NvbnBiVCI2faWTJIFJk_7nK8Kk9Ez-sq_xMwKd2DPSKo4TU"
+                />
+                <div
+                  class="absolute top-4 left-4 px-sm py-1 bg-on-surface/80 backdrop-blur-md text-surface rounded-full text-caption font-label-md uppercase tracking-wider"
+                >
+                  Robotics
+                </div>
+              </div>
+              <div class="p-md flex-1 flex flex-col">
+                <h3
+                  class="font-headline-md text-headline-md text-on-surface mb-xs"
+                >
+                  Robotic Reindeer
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-on-surface-variant flex-1 mb-md"
+                >
+                  Assemble and program AI-driven mechanical creatures using our
+                  advanced custom robotics kits.
+                </p>
+                <button
+                  class="text-primary font-label-md text-label-md flex items-center gap-xs hover:gap-sm transition-all"
+                >
+                  View Details
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+            <!-- Card 2: Snowman Scripting -->
+            <div
+              class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:border-primary-container transition-all duration-300 flex flex-col"
+            >
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  alt="Snowman Scripting"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  data-alt="A modern laptop sitting on a clean wooden desk surface, displaying a screen filled with lines of colorful syntax in a dark-themed code editor. The background is softly blurred, suggesting a quiet, focused workspace with high-key natural lighting coming from a nearby window. The aesthetic is professional, clean, and centers on the act of modern software development."
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLvwe2P4hSPiR5KvjyOFg3PALbt6C-YBJLuXUoJ8U2UYR21_C4H-pi3yQgNJRCBq0jX1swa0uiK199RpmxbFcy7v0MsAbRMhSPEW6xfk6ULltmJNEd0kvKMoP3MYKeyh8f1GPWwblX46hRFlqjkdRHDuIjSOYjQ6-5pWVhxAZLmN07Qdu1_L_b6Yc2E3qeQkoqqvJsfnsvZUNMPUG0zp1AGHFIkjIxEDmm4G0squwInb416Y68p-0JIk"
+                />
+                <div
+                  class="absolute top-4 left-4 px-sm py-1 bg-on-surface/80 backdrop-blur-md text-surface rounded-full text-caption font-label-md uppercase tracking-wider"
+                >
+                  Programming
+                </div>
+              </div>
+              <div class="p-md flex-1 flex flex-col">
+                <h3
+                  class="font-headline-md text-headline-md text-on-surface mb-xs"
+                >
+                  Snowman Scripting
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-on-surface-variant flex-1 mb-md"
+                >
+                  Dive into winter-themed game physics and logic to create your
+                  own interactive holiday experience.
+                </p>
+                <button
+                  class="text-primary font-label-md text-label-md flex items-center gap-xs hover:gap-sm transition-all"
+                >
+                  View Details
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+            <!-- Card 3: 3D Printed Ornaments -->
+            <div
+              class="group bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden hover:border-primary-container transition-all duration-300 flex flex-col"
+            >
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  alt="3D Printed Ornaments"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  data-alt="A close-up shot of a high-tech 3D printer in action, meticulously creating a large blue geometric '3D' structure. The mechanical components of the printer are sharp and industrial, while the bright blue filament adds a pop of vibrant color. The lighting is neutral and informative, showcasing the precision and high-growth technology used in modern additive manufacturing."
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLsCMMcOXM1EhAVv-_ULOfnx1reYqOXnWc2OEJDpPhNShoKxCYHv3wD30MmncIPcX8sGCHTTkjuCB2QA5FT-PKhv3lhNlTFNVGmm11H5FcNhJFsFEdsCjfpVs5_wvdQagBX4dELXtqjToozGOdA6XzPo-GyJFY1S7dMSvZbY5WlZ_ZpL0j5NXNDAVlBrBOJvz7eCmGx6-5UUBqry4n2RKuMx_nOV-heP7z-_jinFyBQGKAWi-N_md7Ia9IM"
+                />
+                <div
+                  class="absolute top-4 left-4 px-sm py-1 bg-on-surface/80 backdrop-blur-md text-surface rounded-full text-caption font-label-md uppercase tracking-wider"
+                >
+                  Manufacturing
+                </div>
+              </div>
+              <div class="p-md flex-1 flex flex-col">
+                <h3
+                  class="font-headline-md text-headline-md text-on-surface mb-xs"
+                >
+                  3D Printed Ornaments
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-on-surface-variant flex-1 mb-md"
+                >
+                  Design and output complex geometric holiday decorations using
+                  our pro-grade resin and FDM printers.
+                </p>
+                <button
+                  class="text-primary font-label-md text-label-md flex items-center gap-xs hover:gap-sm transition-all"
+                >
+                  View Details
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Learning in Action Section -->
+      <section class="py-xl bg-surface-container-low overflow-hidden">
+        <div
+          class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
+            <div class="lg:col-span-5 order-2 lg:order-1">
+              <div class="relative">
+                <div
+                  class="absolute -bottom-10 -left-10 w-48 h-48 bg-primary/10 rounded-full blur-2xl"
+                ></div>
+                <img
+                  alt="Learning in Action Detail"
+                  class="rounded-xl shadow-lg relative z-10 w-full"
+                  data-alt="A focused educational scene where a teacher and student collaborate over coding concepts on a white board. The lighting is bright and modern, creating a positive light-mode environment. The instructor points at specific logic blocks while holding a bright orange laptop, symbolizing the integration of digital tools and manual brainstorming in a high-end tech laboratory."
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLvCqV8Qj4FVl_F35G_B8uqoLQb8jynZugBYFk06kL7p3i7cE1AbdKGDchDsZnlSZUy5YjKLYmWf6gt23TpXGmQHhRGpG1AAjCUlr9SrZsVK8etv8cDf4pa0QtQbLikK9KzJyM6MPAhOO3JXkRevv0OCvc1xjBN4j5eYjlxZDT37cgl2LbqJp7IigjH4xKIneBtQe1JV9BNMOazUf9JQ2yGhmX1HYbFcgTq15G1-dD2vAGmvKt_F6KaapXs"
+                />
+              </div>
+            </div>
+            <div class="lg:col-span-7 order-1 lg:order-2">
+              <h2
+                class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-md"
+              >
+                Learning in Action
+              </h2>
+              <div class="space-y-md">
+                <div class="flex gap-md items-start">
+                  <div
+                    class="w-12 h-12 shrink-0 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold text-headline-md"
+                  >
+                    1
+                  </div>
+                  <div>
+                    <h4
+                      class="font-body-lg text-body-lg font-bold text-on-surface"
+                    >
+                      Hands-on Mentorship
+                    </h4>
+                    <p
+                      class="font-body-md text-body-md text-on-surface-variant"
+                    >
+                      Work directly with industry professionals from top tech
+                      hubs.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-md items-start">
+                  <div
+                    class="w-12 h-12 shrink-0 rounded-lg bg-surface border-2 border-outline-variant text-primary flex items-center justify-center font-bold text-headline-md"
+                  >
+                    2
+                  </div>
+                  <div>
+                    <h4
+                      class="font-body-lg text-body-lg font-bold text-on-surface"
+                    >
+                      Collaborative Sprints
+                    </h4>
+                    <p
+                      class="font-body-md text-body-md text-on-surface-variant"
+                    >
+                      Team up with peers to solve real-world debugging
+                      challenges.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-md items-start">
+                  <div
+                    class="w-12 h-12 shrink-0 rounded-lg bg-surface border-2 border-outline-variant text-primary flex items-center justify-center font-bold text-headline-md"
+                  >
+                    3
+                  </div>
+                  <div>
+                    <h4
+                      class="font-body-lg text-body-lg font-bold text-on-surface"
+                    >
+                      Portfolio Projects
+                    </h4>
+                    <p
+                      class="font-body-md text-body-md text-on-surface-variant"
+                    >
+                      Exit the workshop with a finished, functional product to
+                      showcase.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Winter Gaming Lounge Section -->
+      <section class="py-xl bg-surface-container-lowest">
+        <div
+          class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop"
+        >
+          <div
+            class="bg-inverse-surface text-inverse-on-surface rounded-2xl p-md md:p-xl overflow-hidden relative group"
+          >
+            <div
+              class="absolute right-0 top-0 w-1/2 h-full hidden lg:block overflow-hidden"
+            >
+              <img
+                alt="Gaming Lounge"
+                class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                data-alt="A stylized 3D render of a retro video game controller encased in a protective shell of blue digital voxels. The background is a clean, neutral gray with floating particles, creating a sense of digital construction or preservation. The aesthetic is high-contrast and minimalist, blending retro gaming nostalgia with modern, block-based digital art concepts."
+                src="https://lh3.googleusercontent.com/aida/AP1WRLuLyEytw_pUXw3G-oSR6LYY2yxyr4OBnzvURZZFRVYAvMsbQlpKihDGJwstOK6OGcB9ElUhdx3oVQeuUVBgs5w7YXC9uWj5P5xTYGNv57716f_vQ31KGPhGm2NcP2Y-ksQLjUh-vw8VihMCTU8TSmepHjryN9Hzu-ogw-9tZTTUp7nhn60gGcNe7Z8fphvBhg_EWcCvzhujc36D7oIgu398ZiSFKEx7Bwt4FUWf1wgaVCgDbB_RSSpeLY4"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-inverse-surface via-transparent to-transparent"
+              ></div>
+            </div>
+            <div class="relative z-10 lg:w-1/2">
+              <span
+                class="inline-block px-sm py-1 bg-primary-fixed-dim/20 text-primary-fixed-dim font-label-md text-label-md rounded-full mb-md"
+                >Social Hub</span
+              >
+              <h2
+                class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-md"
+              >
+                The Winter Gaming Lounge
+              </h2>
+              <p
+                class="font-body-lg text-body-lg text-inverse-on-surface/80 mb-xl"
+              >
+                Between workshop sessions, relax in our high-tech lounge.
+                Compete in local tournaments, test student games, or chill in
+                our VR immersive pods.
+              </p>
+              <div class="grid grid-cols-2 gap-md mb-xl">
+                <div>
+                  <h5
+                    class="text-primary-fixed-dim font-bold font-body-lg text-body-lg"
+                  >
+                    VR Hubs
+                  </h5>
+                  <p class="text-caption font-caption opacity-70">
+                    Oculus &amp; Index ready
+                  </p>
+                </div>
+                <div>
+                  <h5
+                    class="text-primary-fixed-dim font-bold font-body-lg text-body-lg"
+                  >
+                    Retro Zone
+                  </h5>
+                  <p class="text-caption font-caption opacity-70">
+                    Classic 16-bit consoles
+                  </p>
+                </div>
+              </div>
+              <button
+                class="px-xl py-md bg-primary-fixed text-on-primary-fixed font-label-md text-label-md rounded-lg hover:bg-primary-fixed-dim transition-colors"
+              >
+                Tour the Lounge
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- CTA Section -->
+      <section class="py-xl bg-surface">
+        <div class="max-w-[800px] mx-auto px-margin-mobile text-center">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/5 text-primary mb-xl"
+          >
+            <span class="material-symbols-outlined text-[40px]"
+              >auto_awesome</span
+            >
+          </div>
+          <h2
+            class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-md"
+          >
+            Ready to build something magical?
+          </h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant mb-xl">
+            Registration closes on December 15th. Don't miss out on the most
+            energetic coding event of the season.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row gap-md justify-center items-center"
+          >
+            <div class="relative group">
+              <div
+                class="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary-container rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"
+              ></div>
+              <button
+                class="relative px-xl py-md bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-lg active:scale-95 transition-transform"
+              >
+                Register Now
+              </button>
+            </div>
+            <p class="text-caption font-caption text-on-surface-variant">
+              12 spots remaining for Robotic Reindeer
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant/50"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center py-lg px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto"
+      >
+        <div class="mb-md md:mb-0">
+          <div
+            class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2"
+          >
+            <span
+              class="material-symbols-outlined text-primary"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >terminal</span
+            >
+            The Debug Lab
+          </div>
+          <p
+            class="font-caption text-caption text-on-secondary-fixed-variant mt-xs"
+          >
+            © 2024 The Debug Lab. Coding the festive future.
+          </p>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-md">
+          <a
+            class="font-caption text-caption text-on-secondary-fixed-variant hover:text-primary transition-colors"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="font-caption text-caption text-on-secondary-fixed-variant hover:text-primary transition-colors"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="font-caption text-caption text-on-secondary-fixed-variant hover:text-primary transition-colors"
+            href="#"
+            >Contact Us</a
+          >
+          <a
+            class="font-caption text-caption text-on-secondary-fixed-variant hover:text-primary transition-colors"
+            href="#"
+            >Support</a
+          >
+        </nav>
+        <div class="mt-md md:mt-0 flex gap-md">
+          <button
+            class="material-symbols-outlined text-on-secondary-fixed-variant hover:text-primary transition-colors"
+          >
+            language
+          </button>
+          <button
+            class="material-symbols-outlined text-on-secondary-fixed-variant hover:text-primary transition-colors"
+          >
+            share
+          </button>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Micro-interactions and effects
+      document.addEventListener("DOMContentLoaded", () => {
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            header.classList.add("shadow-md");
+          } else {
+            header.classList.remove("shadow-md");
+          }
+        });
+
+        // Smooth parallax-ish effect for hero image
+        const heroImage = document.querySelector(
+          'img[alt="Learning in Action"]',
+        );
+        window.addEventListener("mousemove", (e) => {
+          const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+          const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+          if (heroImage)
+            heroImage.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+        });
+      });
+    </script>
+  </body>
+</html>

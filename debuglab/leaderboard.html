@@ -1,0 +1,679 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#c6c6c7",
+              "surface-container": "#efeded",
+              "tertiary-container": "#989999",
+              "on-surface": "#1b1c1c",
+              "surface-variant": "#e4e2e2",
+              "inverse-primary": "#ffb693",
+              outline: "#8e7164",
+              "on-tertiary": "#ffffff",
+              "surface-container-low": "#f5f3f3",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f2f0f0",
+              error: "#ba1a1a",
+              "on-secondary-container": "#636262",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#5a4136",
+              "on-primary-container": "#572000",
+              "secondary-fixed-dim": "#c8c6c5",
+              "on-tertiary-container": "#2f3132",
+              "error-container": "#ffdad6",
+              "outline-variant": "#e2bfb0",
+              "surface-container-high": "#e9e8e7",
+              primary: "#a04100",
+              tertiary: "#5d5f5f",
+              "on-primary-fixed": "#351000",
+              "inverse-surface": "#303031",
+              "surface-bright": "#fbf9f8",
+              "surface-container-highest": "#e4e2e2",
+              "surface-dim": "#dbdad9",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-primary-fixed-variant": "#7a3000",
+              surface: "#fbf9f8",
+              "on-secondary-fixed-variant": "#474746",
+              "on-tertiary-fixed": "#1a1c1c",
+              "primary-fixed": "#ffdbcc",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#e5e2e1",
+              "surface-tint": "#a04100",
+              "on-error-container": "#93000a",
+              "primary-container": "#ff6b00",
+              "primary-fixed-dim": "#ffb693",
+              secondary: "#5f5e5e",
+              background: "#fbf9f8",
+              "tertiary-fixed": "#e2e2e2",
+              "on-background": "#1b1c1c",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-primary": "#ffffff",
+              "secondary-container": "#e2dfde",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "40px",
+              sm: "16px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+              xl: "64px",
+              gutter: "24px",
+              xs: "8px",
+              md: "24px",
+              base: "4px",
+            },
+            fontFamily: {
+              "label-md": ["Outfit"],
+              "display-lg": ["Outfit"],
+              "body-md": ["Outfit"],
+              "body-lg": ["Outfit"],
+              "headline-md": ["Outfit"],
+              caption: ["Outfit"],
+              "headline-lg-mobile": ["Outfit"],
+              "headline-lg": ["Outfit"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "600" },
+              ],
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "32px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .podium-gradient {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 107, 0, 0.05) 100%
+        );
+      }
+      .kinetic-border {
+        box-shadow: 0 0 0 1px #eeeeee;
+      }
+      .rank-glow-1 {
+        box-shadow: 0 10px 30px -10px rgba(160, 65, 0, 0.3);
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="w-full sticky top-0 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline z-50 transition-all duration-200 ease-in-out h-20"
+    >
+      <div
+        class="max-w-7xl mx-auto px-margin-desktop flex items-center justify-between h-full"
+      >
+        <div class="flex items-center gap-lg">
+          <span
+            class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim"
+            >The Debug Lab</span
+          >
+          <nav class="hidden md:flex items-center gap-md">
+            <a
+              class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              href="#"
+              >Marketplace</a
+            >
+            <a
+              class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              href="#"
+              >Wall of Fame</a
+            >
+            <a
+              class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 transition-colors duration-200"
+              href="#"
+              >Leaderboard</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-sm">
+          <button
+            class="font-label-md text-label-md text-secondary hover:text-primary transition-colors"
+          >
+            Coach Sign In
+          </button>
+          <button
+            class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors"
+          >
+            Students
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="min-h-screen">
+      <!-- Hero/Title Section -->
+      <section class="max-w-7xl mx-auto px-margin-desktop py-xl text-center">
+        <div
+          class="inline-flex items-center gap-xs bg-primary-fixed px-sm py-base rounded-full mb-md"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] text-on-primary-fixed"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >workspace_premium</span
+          >
+          <span class="font-label-md text-label-md text-on-primary-fixed"
+            >Winter Cohort 2024</span
+          >
+        </div>
+        <h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">
+          Elite Debuggers
+        </h1>
+        <p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">
+          Celebrating the top performers who have demonstrated exceptional
+          problem-solving and project mastery.
+        </p>
+      </section>
+      <!-- Podium Section -->
+      <section class="max-w-7xl mx-auto px-margin-desktop mb-xl">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-md items-end max-w-4xl mx-auto podium-gradient p-md rounded-xl"
+        >
+          <!-- Rank 2 -->
+          <div class="order-2 md:order-1 flex flex-col items-center">
+            <div class="relative mb-md">
+              <div
+                class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface-container-high ring-4 ring-tertiary-fixed-dim/20"
+              >
+                <img
+                  alt="Sarah Chen"
+                  class="w-full h-full object-cover"
+                  data-alt="A close-up studio portrait of a confident young Asian male student with a modern haircut, smiling warmly. The lighting is bright and high-contrast, fitting a professional light-mode UI. The background is a clean, minimalist off-white, maintaining a vibrant and energetic startup atmosphere with orange accents."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdpkQBKROHvu53SmrmNiivJLO1ki8QpF0BvVoDgDrrQvJTgVvWclb3CU3S2KM2AC0qUdr29k_tQxjdFI-P9eI2YW3PSndEq2omf9D8l6tltQQSmMmqrzY3LeL__DLgkXqP3rms5VeWR5LhQZya3tJrWLo21rNDWHJ8mfbWRobZS8quLEFhNzxRrLlMZZfAsGP6xPKCkUwRc3-QZ1hEJcQSBeEBzTxSo9edxFozjaNnPog7_xhpb0m0bdklBM_62XX0xynnVpEC4mo"
+                />
+              </div>
+              <div
+                class="absolute -bottom-2 -right-2 bg-secondary text-on-primary w-8 h-8 rounded-full flex items-center justify-center font-bold text-label-md"
+              >
+                2
+              </div>
+            </div>
+            <div class="text-center mb-md">
+              <p class="font-headline-md text-headline-md">Alex Rivera</p>
+              <p class="text-secondary font-label-md">
+                12 Projects • 4,820 pts
+              </p>
+            </div>
+            <div
+              class="w-full bg-surface-container-high h-32 rounded-t-lg flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-secondary text-[40px]"
+                >military_tech</span
+              >
+            </div>
+          </div>
+          <!-- Rank 1 -->
+          <div
+            class="order-1 md:order-2 flex flex-col items-center scale-110 z-10"
+          >
+            <div class="relative mb-md">
+              <div
+                class="w-32 h-32 rounded-full overflow-hidden border-4 border-primary ring-8 ring-primary-fixed/30 rank-glow-1"
+              >
+                <img
+                  alt="Mia Wong"
+                  class="w-full h-full object-cover"
+                  data-alt="A professional headshot of a young woman with curly hair looking directly at the camera with a brilliant smile. She is in a brightly lit, modern co-working space with soft bokeh background. The aesthetic is clean, premium, and professional, utilizing high-contrast lighting and a vibrant brand orange highlights."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA30536B19HSH0DoreYd1NgiAFL5qJCOwqbcMoe3aREAzY9ZWwX06kgORTJogkICMkWpsxW9QrFE005sXMiusVLl-eFps-mRS66fMOE85cSHgb2G5tEIprjzrCURlRSaZusV0W3ZPAQ5Qdmrb4hUCeW8bX8ZyWD8j37hxvV8DGD6FHyVkP8J_JQCDlRVxPQMMuLQFyoN9fxCZz-eTM9_Ndk3zAO4NvOLtKY7to3wEamUrB9_tKOmnPzkEoUvadbPI4x9HcQkqCzJeI"
+                />
+              </div>
+              <div
+                class="absolute -bottom-2 -right-2 bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center font-bold text-headline-md shadow-lg"
+              >
+                1
+              </div>
+            </div>
+            <div class="text-center mb-md">
+              <p class="font-headline-md text-headline-md text-primary">
+                Mia Wong
+              </p>
+              <p class="text-primary font-bold font-label-md">
+                18 Projects • 6,150 pts
+              </p>
+            </div>
+            <div
+              class="w-full bg-primary h-48 rounded-t-lg flex items-center justify-center shadow-2xl"
+            >
+              <span
+                class="material-symbols-outlined text-on-primary text-[64px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >trophy</span
+              >
+            </div>
+          </div>
+          <!-- Rank 3 -->
+          <div class="order-3 md:order-3 flex flex-col items-center">
+            <div class="relative mb-md">
+              <div
+                class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface-container-high ring-4 ring-tertiary-fixed-dim/20"
+              >
+                <img
+                  alt="Jordan Smith"
+                  class="w-full h-full object-cover"
+                  data-alt="A bright and airy portrait of a stylish young individual in a minimalist setting. They are looking thoughtfully to the side. The lighting is crisp and natural, emphasizing a high-contrast modern aesthetic. The color palette is dominated by whites and soft grays, with subtle pops of professional brand orange."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD81631TMD4RaZXrTes4_yvgblmeboRN1A15EXOcACrjeZ0ME4NF9inLwcNYH1GUgv0N5jFHCX4-5Cvk6c9GJnsC4tZkw3YrZlKN3pyXFaMtgDrVaPuFhJ2tlYqJvpQqFD0R1i-D6kyaa9gExE0_Xyi4zGzzlTneJ6L2CNaqFFASuzXkBNWRWH47OWvjwLFUnH_eqRyzzCC6xMqv0LwHGxi6cKGqZtgpQsDketb-e04q9AVVavIA7oDW-QzstAFZ6bPUldNqz09Mys"
+                />
+              </div>
+              <div
+                class="absolute -bottom-2 -right-2 bg-secondary text-on-primary w-8 h-8 rounded-full flex items-center justify-center font-bold text-label-md"
+              >
+                3
+              </div>
+            </div>
+            <div class="text-center mb-md">
+              <p class="font-headline-md text-headline-md">Jordan Smith</p>
+              <p class="text-secondary font-label-md">
+                10 Projects • 4,200 pts
+              </p>
+            </div>
+            <div
+              class="w-full bg-surface-container-low h-24 rounded-t-lg flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-secondary text-[32px]"
+                >workspace_premium</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Search & Filter Bar -->
+      <section class="max-w-7xl mx-auto px-margin-desktop mb-md">
+        <div
+          class="flex flex-col md:flex-row gap-md justify-between items-center bg-white p-sm border border-outline-variant rounded-xl shadow-sm"
+        >
+          <div class="relative w-full md:w-96">
+            <span
+              class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-secondary"
+              >search</span
+            >
+            <input
+              class="w-full pl-xl pr-md py-xs bg-surface-container-lowest border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+              placeholder="Search by name or cohort..."
+              type="text"
+            />
+          </div>
+          <div
+            class="flex gap-xs overflow-x-auto hide-scrollbar w-full md:w-auto"
+          >
+            <button
+              class="px-md py-xs rounded-full bg-primary text-on-primary font-label-md whitespace-nowrap"
+            >
+              Overall
+            </button>
+            <button
+              class="px-md py-xs rounded-full bg-surface-container-low text-secondary font-label-md whitespace-nowrap hover:bg-surface-container-high transition-colors"
+            >
+              This Month
+            </button>
+            <button
+              class="px-md py-xs rounded-full bg-surface-container-low text-secondary font-label-md whitespace-nowrap hover:bg-surface-container-high transition-colors"
+            >
+              Workshops
+            </button>
+            <button
+              class="px-md py-xs rounded-full bg-surface-container-low text-secondary font-label-md whitespace-nowrap hover:bg-surface-container-high transition-colors"
+            >
+              Projects
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Detailed Leaderboard Table -->
+      <section class="max-w-7xl mx-auto px-margin-desktop pb-xl">
+        <div
+          class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm"
+        >
+          <table class="w-full text-left border-collapse">
+            <thead
+              class="bg-surface-container-lowest border-b border-outline-variant"
+            >
+              <tr>
+                <th
+                  class="px-md py-sm font-label-md text-secondary uppercase tracking-wider"
+                >
+                  Rank
+                </th>
+                <th
+                  class="px-md py-sm font-label-md text-secondary uppercase tracking-wider"
+                >
+                  Student
+                </th>
+                <th
+                  class="px-md py-sm font-label-md text-secondary uppercase tracking-wider text-center"
+                >
+                  Projects
+                </th>
+                <th
+                  class="px-md py-sm font-label-md text-secondary uppercase tracking-wider text-right"
+                >
+                  Total Points
+                </th>
+                <th
+                  class="px-md py-sm font-label-md text-secondary uppercase tracking-wider text-center"
+                >
+                  Trend
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant">
+              <!-- Entry 4 -->
+              <tr
+                class="hover:bg-surface-container-lowest transition-colors cursor-pointer group"
+              >
+                <td class="px-md py-md font-bold text-on-surface">04</td>
+                <td class="px-md py-md">
+                  <div class="flex items-center gap-sm">
+                    <div
+                      class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden"
+                    >
+                      <img
+                        alt="Sarah Jenkins"
+                        class="w-full h-full object-cover"
+                        data-alt="Portrait of a young professional student in a modern workspace. Clean lighting, high contrast, minimalist background. Warm tones with energetic brand orange accents."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmoDNibI79W6WEZjiFzQAnJBHhWHZnnwV2Za4o56nOO663Fqb5zfXM60yFZ1xOUdd0SblPiAlpQ5YAh0iLmCQG7-fPv26uCwp8rBMXXdmMiGFqlmfo0xXE_NiTiqoy4bOVlzz5azXn9dgmZ87WuUedOQFMYR_eyp6FthjBoNhPZ92D1aweslHlV90tTydhQCrDicZ3F5tS0Gr5jK21DmR-C2BMsbGk7ZUPh_TncssPd9DFU2lkohF7r8vM5pvsBr1AmuTAm8sLSys"
+                      />
+                    </div>
+                    <div>
+                      <p
+                        class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                      >
+                        Sarah Jenkins
+                      </p>
+                      <p class="text-caption font-caption text-secondary">
+                        Backend Specialist
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-md py-md text-center">09</td>
+                <td class="px-md py-md text-right font-bold text-primary">
+                  3,950
+                </td>
+                <td class="px-md py-md text-center">
+                  <span
+                    class="material-symbols-outlined text-green-600 text-[20px]"
+                    >trending_up</span
+                  >
+                </td>
+              </tr>
+              <!-- Entry 5 -->
+              <tr
+                class="hover:bg-surface-container-lowest transition-colors cursor-pointer group"
+              >
+                <td class="px-md py-md font-bold text-on-surface">05</td>
+                <td class="px-md py-md">
+                  <div class="flex items-center gap-sm">
+                    <div
+                      class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden"
+                    >
+                      <img
+                        alt="Kevin Park"
+                        class="w-full h-full object-cover"
+                        data-alt="Portrait of a young professional student in a modern workspace. Clean lighting, high contrast, minimalist background. Warm tones with energetic brand orange accents."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs5rpfGWd3B50cgvWbI9i-Mc2LyfU_u7kB-epPMmmsFd6OX-vkvDeN4LDECo_w6pt87FLJkaWqV4tOpEwEF31TBYrssLt4PR8VTErK4tgc7CjT4Mj2EhTbs-a11H6rsWBAe8WxtrIH2lxh-CE0m4I7PDxE3g-5X840oITkPBSaDVRSrbY84k_D6-8fNOZcZicgpKmW8vMJUurv8NI8bZ4ppt81-QPgrHKTXl_5tFg-XzK8VADyaJ7QKzzD1eEXcrtOumgbOrHyoNk"
+                      />
+                    </div>
+                    <div>
+                      <p
+                        class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                      >
+                        Kevin Park
+                      </p>
+                      <p class="text-caption font-caption text-secondary">
+                        Fullstack Explorer
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-md py-md text-center">08</td>
+                <td class="px-md py-md text-right font-bold text-primary">
+                  3,820
+                </td>
+                <td class="px-md py-md text-center">
+                  <span
+                    class="material-symbols-outlined text-secondary text-[20px]"
+                    >horizontal_rule</span
+                  >
+                </td>
+              </tr>
+              <!-- Loop logic placeholder (Manual repeats for demonstration) -->
+              <tr
+                class="hover:bg-surface-container-lowest transition-colors cursor-pointer group"
+              >
+                <td class="px-md py-md font-bold text-on-surface">06</td>
+                <td class="px-md py-md">
+                  <div class="flex items-center gap-sm">
+                    <div
+                      class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden"
+                    >
+                      <img
+                        alt="Elena Rodriguez"
+                        class="w-full h-full object-cover"
+                        data-alt="Portrait of a young professional student in a modern workspace. Clean lighting, high contrast, minimalist background. Warm tones with energetic brand orange accents."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjMF4BGJO4NSz4kI50FkdPLsF6dJhPRGnWjbfb41edzrYkb7kzpdbgIFCW6XSO6EYnbyPlBDfxy_WlVp0ecS5390ruwty2pDBeZ_L_6aFxk_1kvTUAfChjhrTlYkWkYvkaEC0A-na78cGjqjbY-X68ffcqVRUc-DjoTTjp-hkF9yE-MXACL8pAm5X94U_XCR185RgBfLt6gxmevaQjJ2WB9dkoiZvMD515cPeuMb6Rb2NsH3rE0knRszVJPGCp2quPzvsnoGuXgM0"
+                      />
+                    </div>
+                    <div>
+                      <p
+                        class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                      >
+                        Elena Rodriguez
+                      </p>
+                      <p class="text-caption font-caption text-secondary">
+                        UI/UX Prodigy
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-md py-md text-center">07</td>
+                <td class="px-md py-md text-right font-bold text-primary">
+                  3,710
+                </td>
+                <td class="px-md py-md text-center">
+                  <span
+                    class="material-symbols-outlined text-green-600 text-[20px]"
+                    >trending_up</span
+                  >
+                </td>
+              </tr>
+              <tr
+                class="hover:bg-surface-container-lowest transition-colors cursor-pointer group"
+              >
+                <td class="px-md py-md font-bold text-on-surface">07</td>
+                <td class="px-md py-md">
+                  <div class="flex items-center gap-sm">
+                    <div
+                      class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden"
+                    >
+                      <img
+                        alt="Marcus Thorne"
+                        class="w-full h-full object-cover"
+                        data-alt="Portrait of a young professional student in a modern workspace. Clean lighting, high contrast, minimalist background. Warm tones with energetic brand orange accents."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ43ejg9wYVDBRT-8hUB4IBdevOmVZngeXeNcNq_JGOTM0t9ANzBCa1I0honMQ7kOa3VYW8tW2quAMAFaQVt2rzt9fYEOR21Hu0jU0DpaoSPBOSULK_v7bvQ7yjZB9IaNdEpsY0rDU-NZLnAxThsFma0xsJa8NIorkksgYypq3WAkPHVh3LIFw5UJGmMzfwJijZv5jNtrgMqpmVPgyB2NomXX0Aq2p4K9i5HQLWJ448Lc0JJuxc62ZJhhHdqiZA3iy0UTLBS0vFBc"
+                      />
+                    </div>
+                    <div>
+                      <p
+                        class="font-bold text-on-surface group-hover:text-primary transition-colors"
+                      >
+                        Marcus Thorne
+                      </p>
+                      <p class="text-caption font-caption text-secondary">
+                        React Ninja
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-md py-md text-center">07</td>
+                <td class="px-md py-md text-right font-bold text-primary">
+                  3,650
+                </td>
+                <td class="px-md py-md text-center">
+                  <span class="material-symbols-outlined text-error text-[20px]"
+                    >trending_down</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div
+            class="px-md py-md bg-surface-container-lowest text-center border-t border-outline-variant"
+          >
+            <button
+              class="text-primary font-label-md hover:underline transition-all"
+            >
+              Load More Students (50 total)
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline"
+    >
+      <div
+        class="max-w-7xl mx-auto px-margin-desktop py-xl flex flex-col md:flex-row justify-between items-center gap-md"
+      >
+        <div>
+          <span
+            class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim"
+            >The Debug Lab</span
+          >
+          <p
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim mt-xs"
+          >
+            © 2024 The Debug Lab. All rights reserved.
+          </p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-md">
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all"
+            href="#"
+            >Cookie Policy</a
+          >
+          <a
+            class="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all"
+            href="#"
+            >Contact Us</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Simple script to handle hover interaction on table rows
+      document.querySelectorAll("tr.cursor-pointer").forEach((row) => {
+        row.addEventListener("click", () => {
+          const name = row.querySelector(
+            ".font-bold.text-on-surface",
+          ).innerText;
+          console.log(`Navigating to profile for: ${name}`);
+        });
+      });
+
+      // Atmosphere effect: Random subtle particles in the background
+      const createParticle = () => {
+        const p = document.createElement("div");
+        p.className =
+          "fixed bg-primary/10 rounded-full pointer-events-none transition-all duration-1000 ease-out";
+        const size = Math.random() * 10 + 2;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.top = `${Math.random() * 100}vh`;
+        p.style.opacity = "0";
+        document.body.appendChild(p);
+
+        setTimeout(() => {
+          p.style.opacity = "1";
+          p.style.transform = `translateY(-${Math.random() * 100}px)`;
+        }, 100);
+
+        setTimeout(() => {
+          p.style.opacity = "0";
+          setTimeout(() => p.remove(), 1000);
+        }, 3000);
+      };
+
+      setInterval(createParticle, 2000);
+    </script>
+  </body>
+</html>

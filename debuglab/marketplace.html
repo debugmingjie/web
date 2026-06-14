@@ -1,0 +1,786 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Marketplace | The Debug Lab</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#c6c6c7",
+              "surface-container": "#efeded",
+              "tertiary-container": "#989999",
+              "on-surface": "#1b1c1c",
+              "surface-variant": "#e4e2e2",
+              "inverse-primary": "#ffb693",
+              outline: "#8e7164",
+              "on-tertiary": "#ffffff",
+              "surface-container-low": "#f5f3f3",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f2f0f0",
+              error: "#ba1a1a",
+              "on-secondary-container": "#636262",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#5a4136",
+              "on-primary-container": "#572000",
+              "secondary-fixed-dim": "#c8c6c5",
+              "on-tertiary-container": "#2f3132",
+              "error-container": "#ffdad6",
+              "outline-variant": "#e2bfb0",
+              "surface-container-high": "#e9e8e7",
+              primary: "#a04100",
+              tertiary: "#5d5f5f",
+              "on-primary-fixed": "#351000",
+              "inverse-surface": "#303031",
+              "surface-bright": "#fbf9f8",
+              "surface-container-highest": "#e4e2e2",
+              "surface-dim": "#dbdad9",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-primary-fixed-variant": "#7a3000",
+              surface: "#fbf9f8",
+              "on-secondary-fixed-variant": "#474746",
+              "on-tertiary-fixed": "#1a1c1c",
+              "primary-fixed": "#ffdbcc",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#e5e2e1",
+              "surface-tint": "#a04100",
+              "on-error-container": "#93000a",
+              "primary-container": "#ff6b00",
+              "primary-fixed-dim": "#ffb693",
+              secondary: "#5f5e5e",
+              background: "#fbf9f8",
+              "tertiary-fixed": "#e2e2e2",
+              "on-background": "#1b1c1c",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-primary": "#ffffff",
+              "secondary-container": "#e2dfde",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "40px",
+              sm: "16px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+              xl: "64px",
+              gutter: "24px",
+              xs: "8px",
+              md: "24px",
+              base: "4px",
+            },
+            fontFamily: {
+              "label-md": ["Outfit"],
+              "display-lg": ["Outfit"],
+              "body-md": ["Outfit"],
+              "body-lg": ["Outfit"],
+              "headline-md": ["Outfit"],
+              caption: ["Outfit"],
+              "headline-lg-mobile": ["Outfit"],
+              "headline-lg": ["Outfit"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "600" },
+              ],
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "32px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fbf9f8;
+        color: #1b1c1c;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .active-filter {
+        background-color: #a04100 !important;
+        color: white !important;
+        border-color: #a04100 !important;
+      }
+      .card-hover:hover {
+        border-color: #a04100;
+        transform: translateY(-4px);
+        transition: all 0.2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-body-md overflow-x-hidden">
+    <!-- TopNavBar -->
+    <header
+      class="w-full sticky top-0 z-50 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out"
+    >
+      <div
+        class="max-w-7xl mx-auto px-margin-desktop flex items-center justify-between h-20"
+      >
+        <div class="flex items-center gap-xl">
+          <a
+            class="font-headline-md text-headline-md font-bold text-primary"
+            href="#"
+            >The Debug Lab</a
+          >
+          <nav class="hidden md:flex items-center gap-md">
+            <a
+              class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md hover:text-primary transition-colors"
+              href="#"
+              >Marketplace</a
+            >
+            <a
+              class="text-secondary hover:text-primary transition-colors font-body-md text-body-md"
+              href="#"
+              >Wall of Fame</a
+            >
+            <a
+              class="text-secondary hover:text-primary transition-colors font-body-md text-body-md"
+              href="#"
+              >Leaderboard</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-md">
+          <div class="relative hidden lg:block">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary"
+              >search</span
+            >
+            <input
+              class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64"
+              placeholder="Search marketplace..."
+              type="text"
+            />
+          </div>
+          <div class="flex items-center gap-sm">
+            <button
+              class="px-sm py-2 text-secondary font-label-md text-label-md hover:text-primary transition-colors"
+            >
+              Coach Sign In
+            </button>
+            <button
+              class="px-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md transition-transform active:scale-95 shadow-sm"
+            >
+              Students
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-margin-desktop py-xl">
+      <!-- Hero Section -->
+      <section
+        class="mb-xl relative rounded-xl overflow-hidden h-80 flex items-center bg-inverse-surface border border-outline"
+      >
+        <div class="absolute inset-0 opacity-40 mix-blend-overlay">
+          <img
+            alt="Tech Background"
+            class="w-full h-full object-cover"
+            data-alt="A high-tech laboratory environment with blue and orange ambient lighting illuminating various robotics components and circuit boards. The composition is sleek and professional, featuring macro shots of microchips and glowing fiber optic cables. The atmosphere is vibrant and high-momentum, perfectly reflecting the premium-utility brand identity of The Debug Lab with sharp focus and cinematic depth."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT40N-vpYY2pmRC3MxemJQ_0aNwwaoC2grIJ9UJr7S4cUUiay6gzRcByIGPQKgbAeRjZfwlFO-Y6Rwk8jdnoHEKs_wImdm8k4Jjh8iYYS1ipA7mt2WI5udrG915vK785Q8YAQuS-Po4TcK3cpGVpcPD5CYD8IQniA11kmJLMDCTD6vb6JrQfzjZqnCrE-iwNyi430yQy61KZmNz0e_hPvOROE6mdqjY5vYSvXAQvXuzE6WfzQ376VI-dhpYI0cgPYP5lpI0-8Xagc"
+          />
+        </div>
+        <div class="relative z-10 px-lg">
+          <h1 class="font-headline-lg text-headline-lg text-white mb-sm">
+            The Gear to Debug the Future.
+          </h1>
+          <p class="text-surface-variant max-w-xl font-body-lg text-body-lg">
+            Equip yourself with premium hardware, custom code snippets, and
+            exclusive achievements. Curated for the next generation of
+            engineers.
+          </p>
+          <div class="mt-md flex gap-sm">
+            <button
+              class="bg-primary text-on-primary px-lg py-3 rounded-lg font-label-md text-label-md"
+            >
+              View New Arrivals
+            </button>
+            <button
+              class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-lg py-3 rounded-lg font-label-md text-label-md hover:bg-white/20 transition-all"
+            >
+              Redeem Credits
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Catalog Section -->
+      <div class="flex flex-col md:flex-row gap-lg">
+        <!-- Sidebar Filters -->
+        <aside class="w-full md:w-64 flex-shrink-0">
+          <div class="sticky top-24 space-y-md">
+            <div>
+              <h3
+                class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-sm"
+              >
+                Categories
+              </h3>
+              <div class="flex flex-col gap-2">
+                <button
+                  class="active-filter text-left px-4 py-3 rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+                >
+                  All Items
+                </button>
+                <button
+                  class="bg-white text-left px-4 py-3 rounded-lg border border-outline-variant font-body-md text-body-md hover:border-primary transition-all"
+                >
+                  Software (12)
+                </button>
+                <button
+                  class="bg-white text-left px-4 py-3 rounded-lg border border-outline-variant font-body-md text-body-md hover:border-primary transition-all"
+                >
+                  Hardware (24)
+                </button>
+                <button
+                  class="bg-white text-left px-4 py-3 rounded-lg border border-outline-variant font-body-md text-body-md hover:border-primary transition-all"
+                >
+                  Merchandise (8)
+                </button>
+                <button
+                  class="bg-white text-left px-4 py-3 rounded-lg border border-outline-variant font-body-md text-body-md hover:border-primary transition-all"
+                >
+                  Digital Badges (15)
+                </button>
+              </div>
+            </div>
+            <div class="pt-md border-t border-outline-variant">
+              <h3
+                class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-sm"
+              >
+                Availability
+              </h3>
+              <label class="flex items-center gap-sm cursor-pointer mb-2 group">
+                <input
+                  class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5"
+                  type="checkbox"
+                />
+                <span class="font-body-md text-body-md group-hover:text-primary"
+                  >In Stock Only</span
+                >
+              </label>
+              <label class="flex items-center gap-sm cursor-pointer group">
+                <input
+                  class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5"
+                  type="checkbox"
+                />
+                <span class="font-body-md text-body-md group-hover:text-primary"
+                  >On Sale</span
+                >
+              </label>
+            </div>
+            <div
+              class="bg-primary-fixed p-md rounded-xl border border-primary/20"
+            >
+              <span
+                class="material-symbols-outlined text-primary mb-xs"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >stars</span
+              >
+              <h4
+                class="font-label-md text-label-md text-on-primary-fixed mb-xs"
+              >
+                Pro Membership
+              </h4>
+              <p
+                class="text-caption font-caption text-on-primary-fixed-variant mb-md"
+              >
+                Get 15% off all physical parts and early access to drops.
+              </p>
+              <button
+                class="w-full bg-primary text-on-primary py-2 rounded-lg font-label-md text-label-md"
+              >
+                Upgrade Now
+              </button>
+            </div>
+          </div>
+        </aside>
+        <!-- Product Grid -->
+        <div class="flex-grow">
+          <div class="flex justify-between items-center mb-md">
+            <p class="text-secondary font-body-md text-body-md">
+              Showing <span class="text-on-surface font-bold">48 products</span>
+            </p>
+            <div class="flex items-center gap-sm">
+              <span class="text-secondary font-label-md text-label-md"
+                >Sort by:</span
+              >
+              <select
+                class="bg-white border-outline-variant rounded-lg font-body-md text-body-md focus:ring-primary focus:border-primary"
+              >
+                <option>Latest Arrivals</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Most Popular</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
+            <!-- Product Card 1 -->
+            <div
+              class="bg-white border border-outline-variant rounded-lg p-base card-hover flex flex-col h-full group"
+            >
+              <div
+                class="relative rounded-lg overflow-hidden h-48 bg-surface-container mb-sm"
+              >
+                <img
+                  alt="Logic Controller"
+                  class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  data-alt="A professional, macro photograph of a sleek black microcontroller circuit board with gold-plated connectors and glowing orange LEDs. The lighting is crisp and clean, creating a high-end tech aesthetic with soft shadows on a white background. This visual captures the 'Modern High-Contrast' style, emphasizing the orange accents as functional highlights in a precise, engineering-focused environment."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-oyMVnOfNzpMp_JvO5S57TDH9eMJA0Rjx6MgNhrbojwxP9uzBOYX7r0Dggpjx22e5ACtZ5bGKGn1r5IZ_W3rUDsaTLa2vLSUan4TW3SOfAfttSbqMJUr4JEJAX2aSkWg-_pJsWHVRCZclgLnV1U697DQ3O2Qge2o6MLbGDwMwvNZKYaOai2oPUP5UfVDdaOUSPa6_o4VaNjEHi6zN3oHBxhLLRxncQ3BsZ6d7DFaJ-xMuMynFGJ5j2TzWuR6mdwFB0xEibkbweek"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter"
+                  >Hardware</span
+                >
+              </div>
+              <div class="px-sm pb-sm flex flex-col flex-grow">
+                <h3
+                  class="font-headline-md text-[18px] text-on-surface mb-xs group-hover:text-primary transition-colors"
+                >
+                  Lab Edition MCU v4
+                </h3>
+                <p
+                  class="text-secondary font-caption text-caption mb-md flex-grow"
+                >
+                  High-speed microcontroller optimized for ROS2 and real-time
+                  computer vision tasks.
+                </p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface"
+                    >$45.00</span
+                  >
+                  <button
+                    class="p-2 border-2 border-on-surface rounded-lg hover:bg-on-surface hover:text-white transition-all flex items-center gap-xs"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >shopping_cart</span
+                    >
+                    <span class="font-label-md text-label-md">Add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 2 -->
+            <div
+              class="bg-white border border-outline-variant rounded-lg p-base card-hover flex flex-col h-full group"
+            >
+              <div
+                class="relative rounded-lg overflow-hidden h-48 bg-surface-container mb-sm"
+              >
+                <img
+                  alt="Python Snippet"
+                  class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  data-alt="A stylized digital representation of code blocks floating in a 3D space with a soft-focus background. The code is vibrant orange against a clean white and gray interface, symbolizing a premium software asset. The lighting is airy and minimalist, reflecting a modern workspace for developers where software feels like a tangible, high-quality tool."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2heQ_xtRdx8ZO3uhT4nrMb8ax7snlbna7xAP_hYb9Vg_7XkQiZlqxizVx_63IIRVWzlTZk3D_x8jz5VJ4LSWhxAuR-aizRfEw-Y9ny9_PG5L2b1LtbKdi80HvJQ9N2lDO2qWOyO5Xlm8HHutD5lX_mdzFgDNEUBlTwDKCy9V6UYIqqV8nGeosTQi-lPo4P4Aulzq3hUssT8_oXomOOlIiAVI_XOyvSpN3ysCucqFQt7L0FUiLUw4PbXybT2uXeunCJ3a208VjQXM"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter"
+                  >Software</span
+                >
+              </div>
+              <div class="px-sm pb-sm flex flex-col flex-grow">
+                <h3
+                  class="font-headline-md text-[18px] text-on-surface mb-xs group-hover:text-primary transition-colors"
+                >
+                  SLAM Algo Pack
+                </h3>
+                <p
+                  class="text-secondary font-caption text-caption mb-md flex-grow"
+                >
+                  A collection of pre-optimized Python scripts for Simultaneous
+                  Localization and Mapping.
+                </p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface"
+                    >$12.99</span
+                  >
+                  <button
+                    class="p-2 border-2 border-on-surface rounded-lg hover:bg-on-surface hover:text-white transition-all flex items-center gap-xs"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >download</span
+                    >
+                    <span class="font-label-md text-label-md">Buy</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 3 -->
+            <div
+              class="bg-white border border-outline-variant rounded-lg p-base card-hover flex flex-col h-full group"
+            >
+              <div
+                class="relative rounded-lg overflow-hidden h-48 bg-surface-container mb-sm"
+              >
+                <img
+                  alt="Filament"
+                  class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  data-alt="A professionally staged spool of premium 3D printing filament in a vibrant, neon orange color. The spool is placed on a clean, reflective white surface with soft studio lighting that highlights the texture and quality of the material. The background is a minimalist tech workspace with high contrast and sharp focus, maintaining the brand's premium utility aesthetic."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ0ccfT_42CSwJUPi6zbb-oK0X2PHIsOgPtUlUZlCQKEaas2q3ZLpnIJRues2d0q__y-Pe4y05oCH2vQWbE9NEe0cVtEHRvYp2l0KbHk5VsEM6hyT-JXvV6XSjJ3C-KlLXiktQCshOZJlFI9X0C3D3PeKniqVFR4ns16t7JeErRgYiNpFbFdgNwLd-c6Z5E0p2erPjIlJ5ZLQg57UQ_Cy0-BN2SpI7KFl7sRR3eeCpOPy5Y_eW6c8jcUT06m5sUW5xvaOyd_YsW4E"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter"
+                  >Hardware</span
+                >
+              </div>
+              <div class="px-sm pb-sm flex flex-col flex-grow">
+                <h3
+                  class="font-headline-md text-[18px] text-on-surface mb-xs group-hover:text-primary transition-colors"
+                >
+                  Carbon Fiber PLA - 1kg
+                </h3>
+                <p
+                  class="text-secondary font-caption text-caption mb-md flex-grow"
+                >
+                  Industrial-grade filament with 20% carbon fiber reinforcement
+                  for structural parts.
+                </p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface"
+                    >$38.50</span
+                  >
+                  <button
+                    class="p-2 border-2 border-on-surface rounded-lg hover:bg-on-surface hover:text-white transition-all flex items-center gap-xs"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >shopping_cart</span
+                    >
+                    <span class="font-label-md text-label-md">Add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 4 -->
+            <div
+              class="bg-white border border-outline-variant rounded-lg p-base card-hover flex flex-col h-full group"
+            >
+              <div
+                class="relative rounded-lg overflow-hidden h-48 bg-surface-container mb-sm"
+              >
+                <img
+                  alt="Digital Badge"
+                  class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  data-alt="A 3D rendered digital badge with a glowing metallic finish, featuring an intricate 'Debug Master' insignia. The badge is suspended in a minimalist, dark gray void with vibrant orange light rays emanating from behind it. The design is high-contrast, sharp, and futuristic, representing a prestigious digital collectible for elite coders at The Debug Lab."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhPiFz3lFSx2uVQNp34hlLw9mjHbotNfVfAuWyO7vrsnhk2g2iNKg0XvAP_yw_SOhOq4lE0sM-eyUGOzr9RNfgVjK8HZ3XxdhJBfN0vk1a8fgVpEqx5p3YfbyVonO4Txm7M5PkHMLM6OqZjw9NKeY6yDJ1eRCWl2VUoxhixm0_Ng593zAmSV7aUmZFMnCHP0xKobJui1__-OTp5FD-kno7v8gCXk4mDCCam9o4hQRtgDck6PCmlcyrr4duzfzp43ONRYyg2iyy-vU"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-tertiary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter"
+                  >Collectible</span
+                >
+              </div>
+              <div class="px-sm pb-sm flex flex-col flex-grow">
+                <h3
+                  class="font-headline-md text-[18px] text-on-surface mb-xs group-hover:text-primary transition-colors"
+                >
+                  Kernel Cracker Badge
+                </h3>
+                <p
+                  class="text-secondary font-caption text-caption mb-md flex-grow"
+                >
+                  Exclusive digital achievement for your profile. Only 100
+                  copies ever minted.
+                </p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface"
+                    >$5.00</span
+                  >
+                  <button
+                    class="p-2 border-2 border-on-surface rounded-lg hover:bg-on-surface hover:text-white transition-all flex items-center gap-xs"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >local_mall</span
+                    >
+                    <span class="font-label-md text-label-md">Buy</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 5 -->
+            <div
+              class="bg-white border border-outline-variant rounded-lg p-base card-hover flex flex-col h-full group"
+            >
+              <div
+                class="relative rounded-lg overflow-hidden h-48 bg-surface-container mb-sm"
+              >
+                <img
+                  alt="Robotics Kit"
+                  class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  data-alt="A high-resolution product shot of an unassembled modular robot chassis made from precision-cut aluminum. The parts are laid out in a neat, symmetrical grid on a light gray technical drawing background. Orange wiring and connectors provide a functional pop of color. The image style is clinical, clean, and professional, reflecting the high-momentum engineering spirit of The Debug Lab."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Lgvxo6mWVxarH3OJJi67II_k3SPshdM-HS9o1jm89_Jx8-Sr_wkFIzhUDNTuO8nbjJ9VJelsxwHmateTy8qmP5evRV3QUB-GvYLJrEP2YCtRy1IAhnuqpSaE3t00lpdRLM083j7lr4FM6Ubu-R8dF0K1nm97bmNl_BL4iVJpLQ_yI-YYvGbLwltkbOJLSG5-Xsk6LGKFHiijfXIQ_8cLSYDL3iIsVI0LgRu1xe72ipLZhns1Jgp3FfowVNoC1Q7FEbsh0JyCLZA"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter"
+                  >Hardware</span
+                >
+              </div>
+              <div class="px-sm pb-sm flex flex-col flex-grow">
+                <h3
+                  class="font-headline-md text-[18px] text-on-surface mb-xs group-hover:text-primary transition-colors"
+                >
+                  Omni-Wheel Base Kit
+                </h3>
+                <p
+                  class="text-secondary font-caption text-caption mb-md flex-grow"
+                >
+                  Complete mechanical assembly for 360-degree mobility robots.
+                  Motors not included.
+                </p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface"
+                    >$120.00</span
+                  >
+                  <button
+                    class="p-2 border-2 border-on-surface rounded-lg hover:bg-on-surface hover:text-white transition-all flex items-center gap-xs"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >shopping_cart</span
+                    >
+                    <span class="font-label-md text-label-md">Add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Product Card 6 -->
+            <div
+              class="bg-white border border-outline-variant rounded-lg p-base card-hover flex flex-col h-full group"
+            >
+              <div
+                class="relative rounded-lg overflow-hidden h-48 bg-surface-container mb-sm"
+              >
+                <img
+                  alt="Merch"
+                  class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  data-alt="A minimalist studio photograph of a premium black sweatshirt featuring a subtle, high-quality embroidered logo of 'The Debug Lab' in brand orange. The sweatshirt is draped naturally against a clean, off-white wall. The lighting is soft and ambient, creating a lifestyle product shot that feels expensive, curated, and highly functional for modern students."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoB-i-9zpXJ6qYMsgZeMJ5TDo02CY6kpP92urAFOnkhOXky9VFaVnQvGvEtPbrFIzKzsJIS2p8Y4XpiZ4nQuGZmMo4lyCN3Eoxqv_pTv-5V6r57GvVuWSDPxuaTFe2uARjrQJ3j39hJwsIbOEkY_hVxsWLJyf-w3nGOLrc78xD0kSUxuJ3ZTHgnfNm-J6D9KUklDgH8PYYbHDcg7PRWJiu6ri11JJAY5IyZFU_jo8rQD7gVpTyWV2LwGsCuRDhZ9_sWMkn41fJx_I"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-surface-tint text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-tighter"
+                  >Merch</span
+                >
+              </div>
+              <div class="px-sm pb-sm flex flex-col flex-grow">
+                <h3
+                  class="font-headline-md text-[18px] text-on-surface mb-xs group-hover:text-primary transition-colors"
+                >
+                  Developer Hoodie v2
+                </h3>
+                <p
+                  class="text-secondary font-caption text-caption mb-md flex-grow"
+                >
+                  Heavyweight cotton hoodie with hidden zip pockets for small
+                  electronics.
+                </p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface"
+                    >$65.00</span
+                  >
+                  <button
+                    class="p-2 border-2 border-on-surface rounded-lg hover:bg-on-surface hover:text-white transition-all flex items-center gap-xs"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >shopping_cart</span
+                    >
+                    <span class="font-label-md text-label-md">Add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Pagination -->
+          <div class="mt-xl flex justify-center items-center gap-sm">
+            <button
+              class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all"
+            >
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg font-label-md text-label-md"
+            >
+              1
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all font-label-md text-label-md"
+            >
+              2
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all font-label-md text-label-md"
+            >
+              3
+            </button>
+            <span class="px-2 text-secondary">...</span>
+            <button
+              class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all font-label-md text-label-md"
+            >
+              12
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg hover:bg-surface-container transition-all"
+            >
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full bg-surface-container-low border-t border-outline-variant mt-xl"
+    >
+      <div
+        class="max-w-7xl mx-auto px-margin-desktop py-xl flex flex-col md:flex-row justify-between items-center gap-md"
+      >
+        <div class="flex flex-col items-center md:items-start gap-xs">
+          <span class="font-headline-md text-headline-md font-bold text-primary"
+            >The Debug Lab</span
+          >
+          <p class="font-caption text-caption text-secondary">
+            © 2024 The Debug Lab. All rights reserved.
+          </p>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-md">
+          <a
+            class="text-secondary font-caption text-caption hover:text-primary underline transition-all"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-secondary font-caption text-caption hover:text-primary underline transition-all"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-secondary font-caption text-caption hover:text-primary underline transition-all"
+            href="#"
+            >Cookie Policy</a
+          >
+          <a
+            class="text-secondary font-caption text-caption hover:text-primary underline transition-all"
+            href="#"
+            >Contact Us</a
+          >
+        </nav>
+        <div class="flex gap-sm">
+          <button
+            class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px]">share</span>
+          </button>
+          <button
+            class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px]">language</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+    <!-- Shopping Cart FAB (Contextual) -->
+    <button
+      class="fixed bottom-8 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50"
+    >
+      <div class="relative">
+        <span
+          class="material-symbols-outlined text-[28px]"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >shopping_basket</span
+        >
+        <span
+          class="absolute -top-2 -right-2 bg-on-primary text-primary text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-primary"
+          >2</span
+        >
+      </div>
+    </button>
+    <script>
+      // Micro-interactions for filters
+      document.querySelectorAll("aside button").forEach((button) => {
+        button.addEventListener("click", function () {
+          document
+            .querySelectorAll("aside button")
+            .forEach((btn) => btn.classList.remove("active-filter"));
+          this.classList.add("active-filter");
+        });
+      });
+
+      // Add to cart toast simulation
+      document.querySelectorAll("button").forEach((button) => {
+        if (
+          button.innerText.includes("Add") ||
+          button.innerText.includes("Buy")
+        ) {
+          button.addEventListener("click", () => {
+            const originalContent = button.innerHTML;
+            button.innerHTML =
+              '<span class="material-symbols-outlined text-[20px]">check</span> <span class="font-label-md text-label-md">Added!</span>';
+            button.classList.add(
+              "bg-green-600",
+              "text-white",
+              "border-green-600",
+            );
+            setTimeout(() => {
+              button.innerHTML = originalContent;
+              button.classList.remove(
+                "bg-green-600",
+                "text-white",
+                "border-green-600",
+              );
+            }, 2000);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
