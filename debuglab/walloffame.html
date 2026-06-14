@@ -155,6 +155,15 @@
         box-shadow: 0px 4px 20px rgba(160, 65, 0, 0.15);
         border-color: #a04100;
       }
+      .student-signin-btn {
+        background-color: #a04100;
+        color: #ffffff;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .student-signin-btn:hover {
+        background-color: #7a3200;
+        box-shadow: 0 8px 20px rgba(160, 65, 0, 0.18);
+      }
     </style>
   </head>
   <body class="bg-background text-on-background">
@@ -196,9 +205,9 @@
             Coach Sign In
           </button>
           <button
-            class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors"
+            class="student-signin-btn px-md py-xs rounded-lg font-label-md text-label-md"
           >
-            Sign In
+            Student Sign In
           </button>
         </div>
       </div>
