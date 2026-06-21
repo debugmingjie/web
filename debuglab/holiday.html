@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html class="light" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -152,59 +153,79 @@
     </style>
   </head>
   <body class="text-on-surface">
-    <!-- TopNavBar -->
+    <!-- TopAppBar -->
     <header
-      class="w-full sticky top-0 z-50 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out h-20"
+      class="fixed top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/30 z-50"
     >
       <div
-        class="max-w-7xl mx-auto px-margin-desktop flex items-center justify-between h-full"
+        class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-[1440px] mx-auto"
       >
-        <div class="flex items-center gap-lg">
-          <a
-            class="font-headline-md text-headline-md font-bold text-primary"
-            href="index.html"
-            >The Debug Lab</a
+        <div
+          class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >terminal</span
           >
-          <nav class="hidden md:flex items-center gap-md">
-            <a
-              class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 hover:text-primary transition-colors"
-              href="marketplace.html"
-              >Marketplace</a
-            >
-            <a
-              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
-              href="walloffame.html"
-              >Wall of Fame</a
-            >
-            <a
-              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
-              href="leaderboard.html"
-              >Leaderboard</a
-            >
-            <a
-              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
-              href="holiday.html"
-              >Holiday Workshop</a
-            >
-          </nav>
+          The Debug Lab
         </div>
+        <nav class="hidden md:flex gap-md items-center">
+          <div class="relative group">
+            <button
+              class="flex items-center gap-xs font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            >
+              Programs
+              <span class="material-symbols-outlined text-[20px]"
+                >keyboard_arrow_down</span
+              >
+            </button>
+            <div
+              class="absolute top-full left-0 mt-2 w-48 bg-surface-container-lowest border border-outline-variant/30 rounded-lg shadow-xl group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 opacity-100"
+            >
+              <a
+                class="block px-md py-sm font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors"
+                href="#"
+              >
+                Holiday Workshop
+              </a>
+            </div>
+          </div>
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Marketplace</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Wall of Fame</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Leaderboard</a
+          >
+        </nav>
         <div class="flex items-center gap-sm">
-          <a
-            href="signin.html"
-            class="font-label-md text-label-md text-secondary hover:text-primary transition-colors"
+          <button
+            class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all"
           >
-            Coach Sign In
-          </a>
+            search
+          </button>
           <a
-            href="student.html"
-            class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors inline-flex items-center justify-center"
+            class="hidden md:block font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Coach</a
+          ><a
+            class="hidden md:block bg-primary-container text-on-primary font-label-md text-label-md px-md py-xs rounded-lg active:scale-95 duration-200 shadow-sm"
+            href="#"
+            >Students</a
           >
-            Student
-          </a>
         </div>
       </div>
     </header>
-    <main>
+    <main class="pt-20">
       <!-- Hero Section -->
       <section
         class="relative overflow-hidden py-xl md:py-24 bg-surface-container-lowest"
