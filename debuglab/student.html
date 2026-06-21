@@ -155,53 +155,50 @@
     </style>
   </head>
   <body class="font-body-md text-on-background min-h-screen flex flex-col">
-    <!-- TopNavBar: Execution of Shared Component JSON -->
+    <!-- TopNavBar: Site Navigation -->
     <nav
       class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant dark:border-on-surface-variant/20"
     >
       <div
-        class="flex justify-between items-center h-16 px-gutter max-w-[1440px] mx-auto"
+        class="flex justify-between items-center h-20 px-gutter max-w-[1440px] mx-auto"
       >
         <div class="flex items-center gap-lg">
-          <span
+          <a
             class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim"
-            >The Debug Lab</span
+            href="index.html"
+            >The Debug Lab</a
           >
-          <!-- Desktop Nav Links -->
           <div class="hidden md:flex gap-md">
             <a
               class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
-              href="#"
-              >Workshops</a
+              href="marketplace.html"
+              >Marketplace</a
             >
             <a
               class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
-              href="#"
-              >Projects</a
+              href="walloffame.html"
+              >Wall of Fame</a
             >
             <a
               class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
-              href="#"
-              >Badges</a
-            >
-            <a
-              class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
-              href="#"
+              href="leaderboard.html"
               >Leaderboard</a
             >
           </div>
         </div>
         <div class="flex items-center gap-sm">
-          <button
-            class="hidden sm:block font-label-md text-label-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 active:scale-95 transition-transform"
+          <a
+            href="signin.html"
+            class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors"
           >
-            Student Sign-in
-          </button>
-          <button
-            class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary transition-colors active:scale-95 transition-transform"
+            Coach Sign In
+          </a>
+          <a
+            href="student.html"
+            class="bg-primary text-on-primary px-sm py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors inline-flex items-center justify-center"
           >
-            Coach Sign-in
-          </button>
+            Student
+          </a>
         </div>
       </div>
     </nav>
