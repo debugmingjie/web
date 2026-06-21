@@ -20,6 +20,7 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        padding-top: 80px;
       }
       .container {
         width: 100%;
@@ -89,6 +90,17 @@
     </style>
   </head>
   <body>
+    <header style="position:fixed;top:0;left:0;right:0;height:64px;background:#ffffff;box-shadow:0 1px 2px rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:50;">
+      <div style="font-weight:700;color:#a04100;font-family:inherit;">
+        <a href="index.html" style="color:inherit;text-decoration:none;">The Debug Lab</a>
+      </div>
+      <nav style="display:flex;gap:16px;align-items:center;font-family:inherit;">
+        <a href="marketplace.html" style="color:#333;text-decoration:none;">Marketplace</a>
+        <a href="walloffame.html" style="color:#333;text-decoration:none;">Wall of Fame</a>
+        <a href="leaderboard.html" style="color:#333;text-decoration:none;">Leaderboard</a>
+        <a href="signin.html" style="color:#2563eb;text-decoration:none;font-weight:600;">Sign in</a>
+      </nav>
+    </header>
     <main class="container" role="main" aria-labelledby="signin-heading">
       <h1 id="signin-heading">Sign in to your account</h1>
       <form id="signin-form" novalidate>
