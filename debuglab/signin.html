@@ -162,49 +162,50 @@
     <!-- According to Shell Visibility: "exclude the navigation shell if the page intent is: Login, Sign-up..." -->
     <!-- However, the prompt explicitly asks to "Maintain the standard TopNavBar and Footer". I will override the suppression rule per user instruction. -->
     <header
-      class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant dark:border-on-surface-variant/20"
+      class="w-full sticky top-0 z-50 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out h-20"
     >
-      <nav
-        class="flex justify-between items-center h-16 px-gutter max-w-[1440px] mx-auto"
+      <div
+        class="max-w-7xl mx-auto px-margin-desktop flex items-center justify-between h-full"
       >
-        <!-- Brand Logo -->
-        <div class="font-headline-md text-headline-md font-bold text-primary">
-          The Debug Lab
+        <div class="flex items-center gap-lg">
+          <a
+            class="font-headline-md text-headline-md font-bold text-primary"
+            href="index.html"
+            >The Debug Lab</a
+          >
+          <nav class="hidden md:flex items-center gap-md">
+            <a
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
+              href="marketplace.html"
+              >Marketplace</a
+            >
+            <a
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
+              href="walloffame.html"
+              >Wall of Fame</a
+            >
+            <a
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
+              href="leaderboard.html"
+              >Leaderboard</a
+            >
+          </nav>
         </div>
-        <!-- Navigation Links (Desktop) -->
-        <div class="hidden md:flex gap-lg items-center">
-          <a
-            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200"
-            href="marketplace.html"
-            >Marketplace</a
-          >
-          <a
-            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200"
-            href="walloffame.html"
-            >Wall of Fame</a
-          >
-          <a
-            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200"
-            href="leaderboard.html"
-            >Leaderboard</a
-          >
-        </div>
-        <!-- Actions -->
         <div class="flex items-center gap-sm">
           <a
-            href="students.html"
-            class="hidden sm:block font-label-md text-label-md text-on-surface hover:text-primary transition-colors duration-200 px-sm py-xs"
+            href="signin.html"
+            class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 hover:text-primary transition-colors"
           >
-            Student Sign-in
+            Coach Sign In
           </a>
           <a
-            href="signin.html"
-            class="font-label-md text-label-md bg-primary-container text-on-primary-container px-sm py-xs rounded-lg active:scale-95 transition-transform"
+            href="students.html"
+            class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors inline-flex items-center justify-center"
           >
-            Coach Sign-in
+            Students
           </a>
         </div>
-      </nav>
+      </div>
     </header>
     <!-- Main Content: Coach Sign-in -->
     <main
