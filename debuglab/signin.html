@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sign In</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;background:#f0f2f5;margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .container{width:100%;max-width:420px;padding:2rem;background:#fff;box-shadow:0 6px 18px rgba(15,15,15,0.08);border-radius:12px}
+    h1{margin:0 0 1rem;font-size:1.25rem}
+    .form-group{margin-bottom:.75rem}
+    label{display:block;font-size:.875rem;margin-bottom:.25rem;color:#333}
+    input[type="email"],input[type="password"]{width:100%;padding:.75rem;border:1px solid #dcdfe6;border-radius:8px;font-size:1rem}
+    .button{display:inline-block;width:100%;padding:.75rem;background:#2563eb;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;margin-top:.5rem}
+    .small{font-size:.875rem;color:#555;display:flex;justify-content:space-between;align-items:center}
+    .footer{margin-top:1rem;text-align:center;font-size:.875rem;color:#666}
+    .error{color:#b91c1c;font-size:.875rem;margin-top:.5rem;display:none}
+    @media (max-width:420px){body{padding:1rem}}
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="signin-heading">
+    <h1 id="signin-heading">Sign in to your account</h1>
+    <form id="signin-form" novalidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="Enter your password">
+      </div>
+      <div class="form-group small">
+        <label><input id="remember" type="checkbox" name="remember"> Remember me</label>
+        <a href="#" id="forgot">Forgot password?</a>
+      </div>
+      <button type="submit" class="button">Sign in</button>
+      <p class="error" id="error" role="alert"></p>
+      <p class="footer">Don't have an account? <a href="index.html">Sign up</a></p>
+    </form>
+    <script>
+      const form = document.getElementById('signin-form');
+      const errorEl = document.getElementById('error');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        errorEl.style.display = 'none';
+        const email = form.email.value.trim();
+        const password = form.password.value;
+        if (!email) { showError('Please enter your email'); return; }
+        if (!validateEmail(email)) { showError('Please enter a valid email address'); return; }
+        if (password.length < 6) { showError('Password must be at least 6 characters'); return; }
+        /* Placeholder: replace with real authentication call */
+        console.log('Signing in', { email, remember: form.remember.checked });
+        alert('Signed in (demo).');
+      });
+      function showError(msg){ errorEl.textContent = msg; errorEl.style.display = 'block'; }
+      function validateEmail(email){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+    </script>
+  </main>
+</body>
+</html>
