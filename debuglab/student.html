@@ -154,38 +154,38 @@
       }
     </style>
   </head>
-  <body class="font-body-md text-on-background min-h-screen flex flex-col">
+  <body class="font-body-md text-body-md overflow-x-hidden min-h-screen flex flex-col">
     <!-- TopNavBar: Site Navigation -->
-    <nav
-      class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant dark:border-on-surface-variant/20"
+    <header
+      class="w-full sticky top-0 z-50 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out h-20"
     >
       <div
-        class="flex justify-between items-center h-20 px-gutter max-w-[1440px] mx-auto"
+        class="max-w-7xl mx-auto px-margin-desktop flex items-center justify-between h-full"
       >
         <div class="flex items-center gap-lg">
           <a
-            class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim"
+            class="font-headline-md text-headline-md font-bold text-primary"
             href="index.html"
             >The Debug Lab</a
           >
-          <div class="hidden md:flex gap-md">
+          <div class="hidden md:flex items-center gap-md">
             <a
-              class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
               href="marketplace.html"
               >Marketplace</a
             >
             <a
-              class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
               href="walloffame.html"
               >Wall of Fame</a
             >
             <a
-              class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
               href="leaderboard.html"
               >Leaderboard</a
             >
             <a
-              class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200"
+              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
               href="holiday.html"
               >Holiday Workshop</a
             >
@@ -194,22 +194,22 @@
         <div class="flex items-center gap-sm">
           <a
             href="signin.html"
-            class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors"
+            class="font-label-md text-label-md text-secondary hover:text-primary transition-colors"
           >
             Coach Sign In
           </a>
           <a
             href="student.html"
-            class="bg-primary text-on-primary px-sm py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors inline-flex items-center justify-center"
+            class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors inline-flex items-center justify-center"
           >
             Student
           </a>
         </div>
       </div>
-    </nav>
+    </header>
     <!-- Main Content Canvas -->
     <main
-      class="flex-grow flex items-center justify-center pt-16 px-margin-mobile md:px-margin-desktop"
+      class="flex-grow flex items-center justify-center py-xl px-margin-mobile md:px-margin-desktop"
     >
       <div
         class="w-full max-w-[480px] py-xl animate-in fade-in slide-in-from-bottom-4 duration-700"
