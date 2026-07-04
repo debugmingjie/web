@@ -140,6 +140,8 @@
           "wght" 400,
           "GRAD" 0,
           "opsz" 24;
+        display: inline-block;
+        vertical-align: middle;
       }
       .glass-card {
         background: rgba(255, 255, 255, 0.7);
@@ -155,13 +157,12 @@
         box-shadow: 0 0 0 2px rgba(160, 65, 0, 0.1);
       }
       body {
+        font-family: "Outfit", sans-serif;
         background-color: #f9f9f9;
       }
     </style>
   </head>
-  <body
-    class="font-body-md text-body-md overflow-x-hidden min-h-screen flex flex-col"
-  >
+  <body class="bg-background text-on-background min-h-screen flex flex-col">
     <!-- TopNavBar: Site Navigation -->
     <header
       class="w-full sticky top-0 z-50 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out h-20"
@@ -171,32 +172,38 @@
       >
         <div class="flex items-center gap-lg">
           <a
-            class="font-headline-md text-headline-md font-bold text-primary"
+            class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-xs"
             href="index.html"
-            >The Debug Lab</a
           >
-          <div class="hidden md:flex items-center gap-md">
+            <span
+              class="material-symbols-outlined"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >terminal</span
+            >
+            The Debug Lab
+          </a>
+          <nav class="hidden md:flex items-center gap-md">
             <a
-              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
               href="marketplace.html"
               >Marketplace</a
             >
             <a
-              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
               href="walloffame.html"
               >Wall of Fame</a
             >
             <a
-              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
               href="leaderboard.html"
               >Leaderboard</a
             >
             <a
-              class="font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-200"
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
               href="holiday.html"
               >Holiday Workshop</a
             >
-          </div>
+          </nav>
         </div>
         <div class="flex items-center gap-sm">
           <a
@@ -215,86 +222,97 @@
       </div>
     </header>
     <!-- Main Content Canvas -->
-    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
-      <section
-        class="relative overflow-hidden py-xl md:py-24 bg-surface-container-lowest rounded-[32px] border border-outline-variant/30"
-      >
-        <div
-          class="absolute inset-0 opacity-10 pointer-events-none"
-          style="
-            background-image: radial-gradient(
-              circle at 2px 2px,
-              #a04100 1px,
-              transparent 0
-            );
-            background-size: 48px 48px;
-          "
-        ></div>
-        <div
-          class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-xl items-center"
+    <main
+      class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-xl"
+    >
+      <div class="w-full max-w-5xl">
+        <section
+          class="relative overflow-hidden rounded-[32px] border border-outline-variant/30 bg-surface-container-lowest p-lg md:p-xl"
         >
-          <div class="z-10 text-center lg:text-left">
-            <span
-              class="inline-block px-sm py-1 bg-primary/10 text-primary font-label-md text-label-md rounded-full mb-md"
-              >Student Portal</span
-            >
-            <h1
-              class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-md leading-tight text-on-surface"
-            >
-              Welcome back, <span class="text-primary-container">Debugger</span>
-            </h1>
-            <p
-              class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-xl mx-auto lg:mx-0"
-            >
-              Jump straight into the lab. Enter your name to begin your next
-              challenge and pick up where your last build left off.
-            </p>
-            <div
-              class="flex flex-col sm:flex-row gap-md justify-center lg:justify-start"
-            >
-              <a
-                class="px-xl py-md bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-lg active:scale-95 transition-transform"
-                href="index.html"
+          <div
+            class="absolute inset-0 opacity-10 pointer-events-none"
+            style="
+              background-image: radial-gradient(
+                circle at 2px 2px,
+                #a04100 1px,
+                transparent 0
+              );
+              background-size: 48px 48px;
+            "
+          ></div>
+          <div
+            class="absolute -top-16 -right-16 w-40 h-40 bg-primary/5 rounded-full blur-3xl"
+          ></div>
+          <div
+            class="absolute -bottom-16 -left-16 w-40 h-40 bg-primary/5 rounded-full blur-3xl"
+          ></div>
+          <div
+            class="relative z-10 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-xl items-center"
+          >
+            <div class="z-10 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+              <span
+                class="inline-block px-sm py-1 bg-primary/10 text-primary font-label-md text-label-md rounded-full mb-md"
+                >Student Portal</span
               >
-                View Lab
-              </a>
-              <a
-                class="px-xl py-md bg-surface border-2 border-on-surface text-on-surface font-label-md text-label-md rounded-lg active:scale-95 transition-transform"
-                href="signin.html"
+              <h1
+                class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-md leading-tight text-on-surface"
               >
-                Coach Help
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <div
-              class="absolute -top-10 -right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"
-            ></div>
-            <div
-              class="glass-card rounded-xl p-base shadow-xl overflow-hidden border border-outline-variant/20"
-            >
-              <img
-                alt="Students learning in the lab"
-                class="w-full aspect-[4/3] object-cover rounded-lg"
-                src="assets/teacher-coding-elementary.jpg"
-              />
+                Welcome back, <span class="text-primary-container">Debugger</span>
+              </h1>
+              <p
+                class="font-body-lg text-body-lg text-on-surface-variant mb-xl"
+              >
+                Jump straight into the lab. Enter your name to begin your next
+                challenge and pick up where your last build left off.
+              </p>
               <div
-                class="mt-md bg-surface-container-lowest login-card rounded-xl p-lg md:p-xl"
+                class="flex flex-col sm:flex-row gap-md justify-center lg:justify-start"
               >
-                <form class="space-y-lg" id="loginForm">
+                <a
+                  class="px-xl py-md bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-lg active:scale-95 transition-transform"
+                  href="index.html"
+                >
+                  View Lab
+                </a>
+                <a
+                  class="px-xl py-md bg-surface border-2 border-on-surface text-on-surface font-label-md text-label-md rounded-lg active:scale-95 transition-transform"
+                  href="signin.html"
+                >
+                  Coach Help
+                </a>
+              </div>
+            </div>
+            <div class="w-full max-w-md mx-auto">
+              <div class="login-card rounded-xl bg-surface-container-lowest p-lg md:p-xl">
+                <div class="text-center mb-lg">
+                  <div class="mb-sm">
+                    <span
+                      class="material-symbols-outlined text-primary text-4xl"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >person</span
+                    >
+                  </div>
+                  <h2 class="font-headline-md text-headline-md text-on-surface mb-xs">
+                    Enter the lab
+                  </h2>
+                  <p class="font-body-md text-body-md text-on-surface-variant">
+                    Type your name and begin the next challenge.
+                  </p>
+                </div>
+                <form class="space-y-md" id="loginForm">
                   <div class="space-y-xs">
                     <label
-                      class="font-label-md text-label-md text-on-surface block px-1"
+                      class="font-label-md text-label-md text-on-surface block"
                       for="student-name"
                       >Student Name</label
                     >
                     <div class="relative">
                       <span
-                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary opacity-50"
+                        class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant"
                         >person</span
                       >
                       <input
-                        class="w-full h-14 pl-12 pr-4 bg-white border border-outline-variant rounded-lg font-body-md text-body-md input-focus-effect transition-all outline-none"
+                        class="w-full bg-surface-container-low border border-outline-variant rounded-lg py-sm pl-[44px] pr-sm font-body-md text-body-md input-focus-effect transition-all duration-200"
                         id="student-name"
                         name="student-name"
                         placeholder="e.g. Alex Chen"
@@ -304,7 +322,7 @@
                     </div>
                   </div>
                   <button
-                    class="w-full h-14 bg-primary text-white font-headline-md text-headline-md rounded-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-xs group"
+                    class="w-full bg-primary text-on-primary font-headline-md text-headline-md rounded-lg py-sm hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-xs group"
                     type="submit"
                   >
                     <span>Enter Lab</span>
@@ -325,7 +343,6 @@
                       >
                         <img
                           class="w-full h-full object-cover"
-                          data-alt="A minimalist professional studio headshot of a diverse young student in a modern tech environment."
                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8QRswes_oNu13UPUk3fucPrde4_OTrBOZRqFV9jeCLFbyEXSOULlghGsHwBa47e4ptJmNjP38z2UsMyXeJZWqwgC7F_sPdmE42feXpUHg0zQPcFAsH-iS5-RpsY8rUwKFR9P7GtPsieDgL6zKHrZONLU9p-aEgKpB5ORFKrNJNAHFpm1VDtmSVt7zjo34h5KI7UPIoV2p5z4nay6ziT88ATtHH-Y3maWaB1IkUg0GbOqVVvowCo2xh7MtXNYQYSETGo49qP6eBhc"
                         />
                       </div>
@@ -343,7 +360,6 @@
                       >
                         <img
                           class="w-full h-full object-cover"
-                          data-alt="A modern portrait of a female software engineering student smiling softly in a brightly lit learning space."
                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYQDENqdWHdHFjyH44__QHwIG_fJoN3UlP-QpSdX4ZdqkMpQNtcyyl46BXiVvU0rF5HFb5lAdQtFrqhfaVQHF0QTkcv6yEdAJ2sEYOszWRPm2DL7eE43FTGGdOBN2aQgGzX1w0FZDZDcsj_viIdsf3gySjizoqGmOm7c4F8L6qzmR3PSsA5jzQqPHPtTVzHsFY-DMjEY4_vpz07Um5N43kKqmjJ7qtUoXtIUrpZ8gKEU-URwYHXvtDAfH3hqXicURD-2k8PtfwblA"
                         />
                       </div>
@@ -361,7 +377,6 @@
                       >
                         <img
                           class="w-full h-full object-cover"
-                          data-alt="A vibrant close-up portrait of a young male student wearing professional glasses."
                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0ScZW6XnHKfXIFRJWhjhzEN_JtnPbsy45OE6-z9W8fnZwG8p7RiMA3s1_kVcx3gLnNCbmkxZnpHF7VNkd-2Actgv_t2txY3-6rG-mVcaxo-zgnDwuS8sL40yQC43ioqH2SHb6GdwTkjUrbwchSV_gmEjkS5dkPy_jeY0cYCjBkzqiK7pfQdLhBBjbFa_kc1CXvY325kcKgGgHhI5la46-WNERzA3pkS5JyiB17efbghbwiEBkcTpDvVkgPdJtyuo2VEDdPG5GsdU"
                         />
                       </div>
@@ -375,15 +390,15 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <p class="text-center mt-lg font-caption text-caption text-secondary">
-        Forgot your lab ID? Contact your
-        <a class="text-primary hover:underline font-bold" href="signin.html"
-          >Coach</a
-        >
-        for assistance.
-      </p>
+        </section>
+        <p class="text-center mt-lg font-caption text-caption text-secondary">
+          Forgot your lab ID? Contact your
+          <a class="text-primary hover:underline font-bold" href="signin.html"
+            >Coach</a
+          >
+          for assistance.
+        </p>
+      </div>
     </main>
     <!-- Footer: Execution of Shared Component JSON -->
     <footer
