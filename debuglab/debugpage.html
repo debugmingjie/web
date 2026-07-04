@@ -1,0 +1,710 @@
+<!doctype html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Debug Lab | Laboratory for Future Creators</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e4e2e2",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-primary-fixed": "#351000",
+              tertiary: "#5d5f5f",
+              secondary: "#5f5e5e",
+              "primary-fixed": "#ffdbcc",
+              "on-primary-fixed-variant": "#7a3000",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#e2e2e2",
+              "inverse-primary": "#ffb693",
+              "primary-container": "#ff6b00",
+              "on-tertiary-fixed": "#1a1c1c",
+              primary: "#a04100",
+              "on-secondary": "#ffffff",
+              background: "#fbf9f8",
+              "surface-dim": "#dbdad9",
+              "inverse-surface": "#303031",
+              "inverse-on-surface": "#f2f0f0",
+              "secondary-fixed": "#e5e2e1",
+              "on-surface-variant": "#5a4136",
+              "primary-fixed-dim": "#ffb693",
+              error: "#ba1a1a",
+              "tertiary-fixed-dim": "#c6c6c7",
+              surface: "#fbf9f8",
+              "surface-tint": "#a04100",
+              "secondary-container": "#e2dfde",
+              outline: "#8e7164",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#474746",
+              "outline-variant": "#e2bfb0",
+              "on-background": "#1b1c1c",
+              "error-container": "#ffdad6",
+              "surface-bright": "#fbf9f8",
+              "on-primary": "#ffffff",
+              "surface-container": "#efeded",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-surface": "#1b1c1c",
+              "surface-container-low": "#f5f3f3",
+              "surface-container-high": "#e9e8e7",
+              "on-primary-container": "#572000",
+              "surface-variant": "#e4e2e2",
+              "secondary-fixed-dim": "#c8c6c5",
+              "on-error": "#ffffff",
+              "tertiary-container": "#989999",
+              "on-tertiary-container": "#2f3132",
+              "on-secondary-container": "#636262",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              sm: "16px",
+              lg: "40px",
+              "margin-mobile": "16px",
+              xl: "64px",
+              md: "24px",
+              gutter: "24px",
+              "margin-desktop": "48px",
+              xs: "8px",
+              base: "4px",
+            },
+            fontFamily: {
+              "headline-md": ["Outfit"],
+              "headline-lg": ["Outfit"],
+              "body-md": ["Outfit"],
+              "headline-lg-mobile": ["Outfit"],
+              caption: ["Outfit"],
+              "label-md": ["Outfit"],
+              "display-lg": ["Outfit"],
+              "body-lg": ["Outfit"],
+            },
+            fontSize: {
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "headline-lg": [
+                "40px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "32px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "600" },
+              ],
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: #fbf9f8;
+        color: #1b1c1c;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .hero-pattern {
+        background-image: radial-gradient(#e2bfb0 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background min-h-screen flex flex-col">
+    <header
+      class="w-full sticky top-0 z-50 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out h-20"
+    >
+      <div
+        class="max-w-7xl mx-auto px-margin-desktop flex items-center justify-between h-full"
+      >
+        <div class="flex items-center gap-lg">
+          <a
+            class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-xs"
+            href="debugpage.html"
+          >
+            <span
+              class="material-symbols-outlined"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >terminal</span
+            >
+            The Debug Lab
+          </a>
+          <nav class="hidden md:flex items-center gap-md">
+            <a
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
+              href="marketplace.html"
+              >Marketplace</a
+            >
+            <a
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
+              href="walloffame.html"
+              >Wall of Fame</a
+            >
+            <a
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
+              href="leaderboard.html"
+              >Leaderboard</a
+            >
+            <a
+              class="font-body-md text-body-md text-secondary hover:text-primary transition-colors"
+              href="holiday.html"
+              >Holiday Workshop</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-sm">
+          <a
+            href="signin.html"
+            class="font-label-md text-label-md text-secondary hover:text-primary transition-colors"
+          >
+            Coach Sign In
+          </a>
+          <a
+            href="student.html"
+            class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors inline-flex items-center justify-center"
+          >
+            Student
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <section
+        class="relative overflow-hidden py-xl md:py-24 bg-surface-container-lowest"
+      >
+        <div
+          class="absolute inset-0 opacity-10 pointer-events-none"
+          style="
+            background-image: radial-gradient(
+              circle at 2px 2px,
+              #a04100 1px,
+              transparent 0
+            );
+            background-size: 48px 48px;
+          "
+        ></div>
+        <div
+          class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-xl items-center"
+        >
+          <div class="z-10 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+            <span
+              class="inline-block px-sm py-1 bg-primary/10 text-primary font-label-md text-label-md rounded-full mb-md"
+              >Future Creators Lab</span
+            >
+            <h1
+              class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-md leading-tight text-on-surface"
+            >
+              Build bright ideas in <span class="text-primary-container">The Debug Lab</span>
+            </h1>
+            <p
+              class="font-body-lg text-body-lg text-on-surface-variant mb-xl"
+            >
+              Explore hands-on challenges, celebrate student growth, and join a welcoming learning community where creativity meets real-world coding.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-md justify-center lg:justify-start"
+            >
+              <a
+                class="px-xl py-md bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-lg active:scale-95 transition-transform"
+                href="student.html"
+              >
+                Student Portal
+              </a>
+              <a
+                class="px-xl py-md bg-surface border-2 border-on-surface text-on-surface font-label-md text-label-md rounded-lg active:scale-95 transition-transform"
+                href="signin.html"
+              >
+                Coach Sign In
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="glass-card rounded-xl p-lg shadow-xl">
+              <div class="grid gap-md">
+                <div class="rounded-xl border border-outline-variant/40 bg-surface-container-low p-md">
+                  <div class="flex items-center gap-sm mb-sm">
+                    <span class="material-symbols-outlined text-primary">terminal</span>
+                    <span class="font-label-md text-label-md text-on-surface">Mission Focus</span>
+                  </div>
+                  <h2 class="font-headline-md text-headline-md text-on-surface mb-xs">
+                    Learn by building
+                  </h2>
+                  <p class="font-body-md text-body-md text-on-surface-variant">
+                    Students tackle real coding challenges, explore new tools, and share their results in a warm, encouraging lab.
+                  </p>
+                </div>
+                <div class="rounded-xl border border-outline-variant/40 bg-surface-container-low p-md">
+                  <div class="flex items-center gap-sm mb-sm">
+                    <span class="material-symbols-outlined text-primary">groups</span>
+                    <span class="font-label-md text-label-md text-on-surface">Community</span>
+                  </div>
+                  <h2 class="font-headline-md text-headline-md text-on-surface mb-xs">
+                    Grow together
+                  </h2>
+                  <p class="font-body-md text-body-md text-on-surface-variant">
+                    Coaches and learners work side by side to celebrate progress, build confidence, and unlock new ideas.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+          <div class="rounded-[24px] border border-outline-variant/30 bg-surface-container-lowest p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+            <p class="font-label-md text-label-md text-primary mb-sm">Marketplace</p>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Discover tools and missions</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Browse fresh activities, projects, and resources created for every learner.
+            </p>
+          </div>
+          <div class="rounded-[24px] border border-outline-variant/30 bg-surface-container-lowest p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+            <p class="font-label-md text-label-md text-primary mb-sm">Wall of Fame</p>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Celebrate great work</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Highlight progress, creativity, and student achievements in one shared spotlight.
+            </p>
+          </div>
+          <div class="rounded-[24px] border border-outline-variant/30 bg-surface-container-lowest p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+            <p class="font-label-md text-label-md text-primary mb-sm">Leaderboard</p>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Track momentum</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Follow milestones and keep the energy high with visible growth and progress.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="w-full bg-surface-container-lowest border-t border-outline-variant"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center py-md px-gutter max-w-[1440px] mx-auto gap-sm"
+      >
+        <div class="flex items-center gap-sm">
+          <span class="font-label-md text-label-md font-bold text-on-surface">The Debug Lab</span>
+          <span class="font-caption text-caption text-on-surface-variant">© 2024 The Debug Lab. All rights reserved.</span>
+        </div>
+        <div class="flex gap-md">
+          <a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+          <a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+          <a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+          <!-- Card 1 -->
+          <div
+            class="group bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:border-primary transition-colors duration-300"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="Close-up of a sophisticated robotic arm and circuit boards in a bright, modern lab environment. The lighting is crisp and clear, highlighting the technical precision of the engineering workspace. Elements of orange wiring and branding provide a high-contrast pop against the minimalist white and light gray background."
+                src="https://lh3.googleusercontent.com/aida/AP1WRLvnv1cLEj51SKYk4phbIlFfyN2xK6YKaoE3OFqYqhLH0PfaZnQrRnElPBP8jWp49Ohfpq3e8Q078T4L0pTpg0xkbKJ_dkjIlh3voTCnMi6HO6FRWpI1PsFcYqXseq7B2UelmNy6bA8NqdCPkmMgbbRrsioWGNEnvM0HWwXJV8PNNXsiQfjwwqrIOLyY1u0HUQ1EyqYjEu9H0uaPMYGYoLmQeK2bokj2VL75V8mTMjibne4u4ltUDSPEti0"
+              />
+            </div>
+            <div class="p-md">
+              <h3 class="text-headline-md font-headline-md mb-xs">
+                Hands-on Robotics
+              </h3>
+              <p
+                class="text-body-md font-body-md text-on-surface-variant mb-md"
+              >
+                Build and program autonomous systems from scratch using
+                industry-standard hardware.
+              </p>
+              <a
+                class="text-primary font-bold inline-flex items-center gap-xs group-hover:gap-sm transition-all text-label-md font-label-md"
+                href="#"
+              >
+                Learn More
+                <span class="material-symbols-outlined text-[18px]"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="group bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:border-primary transition-colors duration-300"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="A professional game developer's workstation featuring multiple high-resolution monitors displaying complex 3D environments and code editors. The workspace is sleek and organized, with soft ambient lighting and sharp orange accents on peripherals. The style is premium and energetic, reflecting a high-momentum creative studio."
+                src="https://lh3.googleusercontent.com/aida/AP1WRLs4-GzwYX43Xz--2qoNpL-pbEsOisPnJ2JexskA-B_9iuLuhzJDRrxqRS_fp8zRUJSjdnISCC45T81X4kp4UAfD9-OzpZNqY2-ybb6W3FRA6d1MOkOIAnPrmPYTIukNtDVtARb1M7xUVEgGYgP_DfsW7G5a_iUNVijpieg0DnjX8sQU49k1KoU1mbxaZIyvD50WGimCItpKqdpswu2sP9-ksUlgxMweaxKsUp6td74Aifc_h-OGaiXbL9o"
+              />
+            </div>
+            <div class="p-md">
+              <h3 class="text-headline-md font-headline-md mb-xs">
+                Advanced Game Dev
+              </h3>
+              <p
+                class="text-body-md font-body-md text-on-surface-variant mb-md"
+              >
+                Create immersive worlds using Unreal Engine and Unity while
+                mastering C++ and C#.
+              </p>
+              <a
+                class="text-primary font-bold inline-flex items-center gap-xs group-hover:gap-sm transition-all text-label-md font-label-md"
+                href="#"
+              >
+                Learn More
+                <span class="material-symbols-outlined text-[18px]"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="group bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:border-primary transition-colors duration-300"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                data-alt="An industrial-grade 3D printer in action, meticulously creating a complex geometric prototype. The lab setting is immaculate and bright, with high-key lighting that emphasizes the clean lines and modern technology. Subtle orange filaments add a vibrant brand-aligned color accent to the technical scene."
+                src="https://lh3.googleusercontent.com/aida/AP1WRLsGgQSnAXcUqPpTnXynoZor5HwyiYzbe2ynhH_Dy45dBEJXDkB3D0FfOr19RoXgErRHep47Fkxy_ebGIPw7b3tU6ajF3V61FFs6pIbMifsUE8TKyMbvSx35zf5yT_76ni7FYosDtvegvuazG30Zfm7ePlr9DU--TYlvbezjFjAGF165MKgfZH-TF8t8F54vuQEBYW5Zw6cZaS1kk0wPp72zGo2vjok3n4fFiT5w06uWrX3BBAblHH7dCW0"
+              />
+            </div>
+            <div class="p-md">
+              <h3 class="text-headline-md font-headline-md mb-xs">
+                3D Manufacturing
+              </h3>
+              <p
+                class="text-body-md font-body-md text-on-surface-variant mb-md"
+              >
+                From CAD design to physical output, master the art of rapid
+                prototyping and 3D printing.
+              </p>
+              <a
+                class="text-primary font-bold inline-flex items-center gap-xs group-hover:gap-sm transition-all text-label-md font-label-md"
+                href="#"
+              >
+                Learn More
+                <span class="material-symbols-outlined text-[18px]"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Learning in Action Section -->
+      <section class="bg-surface-container-low py-xl">
+        <div
+          class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto transition-all duration-700 opacity-100 translate-y-0"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+            <div class="order-2 lg:order-1">
+              <div class="relative">
+                <div
+                  class="absolute inset-0 bg-primary-container/10 -rotate-2 rounded-xl"
+                ></div>
+                <img
+                  class="relative z-10 w-full h-full object-cover rounded-xl border border-outline-variant"
+                  data-alt="A focused close-up of a student working with electronic components and a digital interface. The shot is stylized with a shallow depth of field, emphasizing the intricate details of the technology. The lighting is soft and professional, utilizing the brand's signature orange as a focal point in the digital display."
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLt4uaZmAG0o5bPoMyUM77IxuOoM4z1qjypTomrPiz8sxLOI9-KSxTivVsJAosoQk9MpOZ2LkWRMJdiQoLG8vLmNptZDo6sMp3aygLIJBpUasX_Ui0NthcdhJGhgeXfNCrR4F631uAeX6Gz6jW6BN5zYsJl-7lZZ20SFPn21VXsQelP_jqkimN9glxx5v-fmDT7x0FXKcxdESqEQOQJbJQWkQV5FZwxCOL0_nnR8pbzSGTotkk94cebp"
+                />
+              </div>
+            </div>
+            <div class="order-1 lg:order-2 flex flex-col gap-md">
+              <h2
+                class="text-headline-lg-mobile md:text-headline-lg font-headline-lg"
+              >
+                Learning in Action
+              </h2>
+              <p class="text-body-lg font-body-lg text-on-surface-variant">
+                Our methodology isn't just about theory. It's about building,
+                failing, debugging, and succeeding in a high-energy
+                collaborative environment.
+              </p>
+              <div class="flex flex-col gap-sm">
+                <div
+                  class="flex items-start gap-md p-sm bg-surface rounded-lg border border-outline-variant"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[32px]"
+                    >groups</span
+                  >
+                  <div>
+                    <h4 class="font-bold text-body-md font-body-md">
+                      Personalized Mentorship
+                    </h4>
+                    <p
+                      class="text-caption font-caption text-on-surface-variant"
+                    >
+                      Direct guidance from industry veterans and elite
+                      engineers.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-start gap-md p-sm bg-surface rounded-lg border border-outline-variant"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[32px]"
+                    >bolt</span
+                  >
+                  <div>
+                    <h4 class="font-bold text-body-md font-body-md">
+                      Intensive Sprints
+                    </h4>
+                    <p
+                      class="text-caption font-caption text-on-surface-variant"
+                    >
+                      Fast-paced project cycles that mirror real-world
+                      development.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-start gap-md p-sm bg-surface rounded-lg border border-outline-variant"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-[32px]"
+                    >folder_shared</span
+                  >
+                  <div>
+                    <h4 class="font-bold text-body-md font-body-md">
+                      Portfolio Driven
+                    </h4>
+                    <p
+                      class="text-caption font-caption text-on-surface-variant"
+                    >
+                      Every hour spent contributes to a professional-grade
+                      portfolio.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- The Gaming Lounge Section -->
+      <section class="bg-inverse-surface py-xl overflow-hidden relative">
+        <!-- Atmospheric Glows -->
+        <div
+          class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-container/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 transition-all duration-700 opacity-100 translate-y-0"
+        ></div>
+        <div
+          class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto relative z-10 transition-all duration-700 opacity-100 translate-y-0"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+            <div class="flex flex-col gap-md text-inverse-on-surface">
+              <span
+                class="text-primary-container font-bold tracking-widest uppercase text-caption font-caption"
+                >Recharge &amp; Relax</span
+              >
+              <h2
+                class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-white"
+              >
+                The Gaming Lounge
+              </h2>
+              <p class="text-body-lg font-body-lg text-slate-300">
+                Success in engineering requires balance. Between intense build
+                sessions, relax in our state-of-the-art lounge featuring premium
+                VR stations, retro arcade cabinets, and competitive esports
+                zones.
+              </p>
+              <div class="flex flex-wrap gap-sm">
+                <span
+                  class="px-4 py-2 bg-white/10 rounded-full text-white text-label-md font-label-md flex items-center gap-xs"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >sports_esports</span
+                  >
+                  Retro Gaming
+                </span>
+                <span
+                  class="px-4 py-2 bg-white/10 rounded-full text-white text-label-md font-label-md flex items-center gap-xs"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >view_in_ar</span
+                  >
+                  VR Experiences
+                </span>
+                <span
+                  class="px-4 py-2 bg-white/10 rounded-full text-white text-label-md font-label-md flex items-center gap-xs"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >bolt</span
+                  >
+                  Pro Esports
+                </span>
+              </div>
+            </div>
+            <div class="relative">
+              <div
+                class="rounded-xl overflow-hidden shadow-2xl border border-white/10"
+              >
+                <img
+                  class="w-full h-auto object-cover opacity-90"
+                  data-alt="A moody, high-tech gaming lounge with neon orange and deep blue atmospheric lighting. The room features ergonomic gaming chairs, curved ultra-wide monitors, and high-end VR equipment. The style is dark and immersive, providing a sharp contrast to the bright laboratory areas of the facility while maintaining a premium feel."
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLvTzi9JeCfn24TCXAW6DynDdovxSnyzdfkf9kQNKEduQwRz7x4d4_G2T17FhslrXqmLDLUX7l0bNoIWR8YzBO31wbvUJvVZLnYHtMq7TKxKvCFTsbFZa0MapoWXBWa0NGldQym2wnohJ8mbrMeFE-V7bTjgj0CU--i1AnyTV7ZogbUAO4M80n_oEKE08k2We9tr-BrrPYJPeZR0vvSV_mIXXS2GIFPssm7kzS191VpKj9PqB_s5fZgBLQM"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Final CTA Section -->
+      <section class="py-xl bg-surface">
+        <div
+          class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto text-center transition-all duration-700 opacity-100 translate-y-0"
+        >
+          <div class="max-w-3xl mx-auto flex flex-col gap-md">
+            <h2 class="text-display-lg font-display-lg text-on-surface">
+              Ready to start?
+            </h2>
+            <p class="text-body-lg font-body-lg text-on-surface-variant">
+              Join a community of thousands of creators building the future
+              today. Applications are now open for our next workshop cycle.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-md justify-center mt-sm">
+              <button
+                class="bg-primary-container text-on-primary-container px-12 py-5 rounded-lg font-bold text-headline-md font-headline-md hover:scale-105 transition-transform"
+              >
+                Register Now
+              </button>
+              <button
+                class="bg-transparent border-2 border-primary text-primary px-12 py-5 rounded-lg font-bold text-headline-md font-headline-md hover:bg-primary-fixed transition-colors"
+              >
+                Speak to a Coach
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer (Shared Component) -->
+    <footer class="bg-surface-container-low border-t border-outline-variant">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-xl max-w-[1440px] mx-auto gap-md"
+      >
+        <div class="flex flex-col gap-xs items-center md:items-start">
+          <span
+            class="text-headline-sm font-headline-sm font-bold text-on-surface"
+            >The Debug Lab</span
+          >
+          <span class="text-label-md font-label-md text-on-surface-variant"
+            >© 2024 The Debug Lab. All rights reserved.</span
+          >
+        </div>
+        <nav class="flex flex-wrap justify-center gap-md">
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md font-label-md"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md font-label-md"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md font-label-md"
+            href="#"
+            >Contact Us</a
+          >
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md font-label-md"
+            href="#"
+            >About</a
+          >
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md font-label-md"
+            href="#"
+            >Safety</a
+          >
+        </nav>
+        <div class="flex gap-sm">
+          <a
+            class="w-10 h-10 rounded-full bg-surface border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-[20px]">hub</span>
+          </a>
+          <a
+            class="w-10 h-10 rounded-full bg-surface border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-[20px]">share</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Simple Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-8");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("section > div").forEach((section) => {
+        section.classList.add(
+          "transition-all",
+          "duration-700",
+          "opacity-0",
+          "translate-y-8",
+        );
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>
