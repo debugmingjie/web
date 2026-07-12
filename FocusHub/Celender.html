@@ -811,13 +811,11 @@
         const openSidebar = () => {
           sidebar?.classList.remove("-translate-x-full");
           backdrop?.classList.remove("hidden");
-          document.body.classList.add("overflow-hidden");
         };
 
         const closeSidebar = () => {
           sidebar?.classList.add("-translate-x-full");
           backdrop?.classList.add("hidden");
-          document.body.classList.remove("overflow-hidden");
         };
 
         trigger?.addEventListener("click", (event) => {
@@ -836,6 +834,12 @@
 
         document.querySelectorAll("[data-page-link]").forEach((link) => {
           const targetPage = link.getAttribute("data-page-link");
+          link.addEventListener("click", (event) => {
+            if (targetPage === currentPage) {
+              event.preventDefault();
+              closeSidebar();
+            }
+          });
           if (targetPage === currentPage) {
             link.classList.add("active");
           }
