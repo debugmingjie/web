@@ -131,12 +131,18 @@
       }
 
       .focushub-nav-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 88px;
+        white-space: nowrap;
+        flex-shrink: 0;
         font-size: 16px;
         font-weight: 600;
         color: theme("colors.on-surface-variant");
         padding: 0.5rem 0.75rem;
         border-radius: 0.75rem;
-        transition: all 0.3s ease;
+        transition: color 0.3s ease, background-color 0.3s ease;
       }
 
       .focushub-nav-link:hover,
