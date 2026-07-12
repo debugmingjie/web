@@ -1,0 +1,591 @@
+<!doctype html>
+<html class="light" lang="en" style="">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contact Us - FocusHub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "secondary-container": "#fc8a40",
+              "surface-dim": "#a8e5e4",
+              "secondary-fixed": "#ffdbc9",
+              "surface-container-low": "#c1fffe",
+              "on-primary-container": "#fffbff",
+              "inverse-on-surface": "#befcfb",
+              "surface-tint": "#bd0042",
+              "tertiary-fixed": "#ffe087",
+              "on-secondary-container": "#672c00",
+              tertiary: "#735c00",
+              "tertiary-container": "#cfa600",
+              primary: "#b90040",
+              "on-tertiary-container": "#4e3d00",
+              "surface-container": "#bbf9f8",
+              "on-error": "#ffffff",
+              "inverse-primary": "#ffb2ba",
+              "surface-container-high": "#b6f3f3",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed": "#331200",
+              "on-primary-fixed": "#400011",
+              "inverse-surface": "#003737",
+              "on-surface-variant": "#5c3f42",
+              "primary-container": "#e31754",
+              "surface-bright": "#e2fffe",
+              "on-tertiary": "#ffffff",
+              secondary: "#9b4500",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#ffb68d",
+              "on-tertiary-fixed": "#231a00",
+              "on-secondary-fixed-variant": "#763300",
+              "primary-fixed": "#ffd9dc",
+              "outline-variant": "#e5bdc0",
+              outline: "#906f72",
+              error: "#ba1a1a",
+              "primary-fixed-dim": "#ffb2ba",
+              "tertiary-fixed-dim": "#eec21e",
+              "on-secondary": "#ffffff",
+              "on-surface": "#002020",
+              background: "#e2fffe",
+              "on-background": "#002020",
+              surface: "#e2fffe",
+              "surface-container-highest": "#b0eeed",
+              "on-primary-fixed-variant": "#910030",
+              "surface-variant": "#b0eeed",
+              "on-tertiary-fixed-variant": "#574500",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "12px",
+              gutter: "16px",
+              base: "8px",
+              "container-margin": "24px",
+              "stack-md": "24px",
+              "stack-lg": "48px",
+            },
+            fontFamily: {
+              "display-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "label-bold": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "title-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-lg-mobile": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "700",
+                },
+              ],
+              "label-bold": [
+                "12px",
+                {
+                  lineHeight: "1",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": [
+                "16px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "title-md": [
+                "20px",
+                {
+                  lineHeight: "1.4",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: theme("colors.background");
+        color: theme("colors.on-background");
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0px 10px 30px -5px rgba(0, 77, 77, 0.1);
+      }
+
+      .input-field {
+        background-color: theme("colors.surface-container-highest");
+        border-radius: 12px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .input-field:focus {
+        border-color: theme("colors.primary");
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(185, 0, 64, 0.1);
+      }
+
+      .focushub-nav-link {
+        font-size: 16px;
+        font-weight: 600;
+        color: theme("colors.on-surface-variant");
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+      }
+
+      .focushub-nav-link:hover,
+      .focushub-nav-link.active {
+        color: theme("colors.primary");
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .focushub-sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.8rem 0.9rem;
+        border-radius: 0.9rem;
+        color: theme("colors.on-surface-variant");
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .focushub-sidebar-link:hover,
+      .focushub-sidebar-link.active {
+        background-color: rgba(185, 0, 64, 0.1);
+        color: theme("colors.primary");
+        transform: translateX(4px);
+      }
+
+      .focushub-sidebar-link .material-symbols-outlined {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col font-body-lg text-body-lg">
+    <header
+      class="sticky top-0 z-50 flex justify-between items-center px-gutter w-full h-16 bg-surface/70 dark:bg-surface-variant/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_10px_30px_-5px_rgba(0,77,77,0.1)]"
+    >
+      <div class="flex items-center gap-gutter">
+        <button
+          type="button"
+          data-sidebar-trigger
+          class="flex items-center gap-3 rounded-full px-2 py-1.5 text-left transition-all duration-300 hover:bg-white/10"
+          aria-label="Open navigation menu"
+        >
+          <span
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary font-display-lg text-title-md shadow-[0px_10px_30px_-5px_rgba(185,0,64,0.3)]"
+            >FH</span
+          >
+          <span
+            class="font-display-lg text-headline-lg text-primary dark:text-primary-fixed tracking-tight"
+            >FocusHub</span
+          >
+        </button>
+      </div>
+      <nav class="hidden md:flex items-center gap-container-margin">
+        <a
+          class="focushub-nav-link"
+          data-page-link="home.html"
+          href="home.html"
+          >Home</a
+        >
+        <a
+          class="focushub-nav-link"
+          data-page-link="aboutus.html"
+          href="aboutus.html"
+          >About Us</a
+        >
+        <a
+          class="focushub-nav-link active"
+          data-page-link="contact.html"
+          href="contact.html"
+          >Contact</a
+        >
+      </nav>
+      <div class="flex items-center gap-gutter">
+        <button
+          aria-label="notifications"
+          class="text-primary dark:text-primary-fixed hover:bg-white/10 transition-all duration-300 p-2 rounded-full active:scale-95"
+        >
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button
+          aria-label="settings"
+          class="text-primary dark:text-primary-fixed hover:bg-white/10 transition-all duration-300 p-2 rounded-full active:scale-95"
+        >
+          <span class="material-symbols-outlined">settings</span>
+        </button>
+        <img
+          alt="User profile avatar"
+          class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover"
+          data-alt="A small, stylized circular profile picture showing a vibrant, abstract colorful pattern in deep teals, punchy pinks, and sunset oranges to match the high-energy tropical productivity brand identity."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_BuKUtIZnC4p9wTLNDIQVpUj6eLHtGErh2X8AhNLVHiD5d4F0AwOhjUZ8i4rOCJaRXmFXTkGx5xmMEKok7787ZBL89XNaAKF48Y9mmhvi5Oxj7b67r-oJ3gcu1gkszm8CYgTL2l1zwWN6j9RpXRVSfMbH-xUt0Ollg3dXiUIi9vpuqoUkjpn1ZnBou0yxkWw28QTxFnC4iryo7fKo_rnw_cYd2YuS2fjU1i9l9lXXH-i4qNqSdALt"
+        />
+      </div>
+    </header>
+
+    <div
+      id="focushub-sidebar-backdrop"
+      class="fixed inset-0 z-[55] hidden bg-[rgba(0,32,32,0.35)] backdrop-blur-[2px]"
+    ></div>
+
+    <aside
+      id="focushub-sidebar"
+      class="fixed left-0 top-0 z-[60] flex h-full w-72 -translate-x-full flex-col border-r border-white/20 bg-surface/95 p-5 shadow-[0px_20px_50px_-10px_rgba(0,77,77,0.2)] transition-transform duration-300"
+    >
+      <div class="mb-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary font-display-lg text-title-md">FH</span>
+          <div>
+            <p class="font-display-lg text-title-md text-primary">FocusHub</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Your calm productivity hub</p>
+          </div>
+        </div>
+        <button
+          id="focushub-sidebar-close"
+          type="button"
+          class="rounded-full p-2 text-on-surface-variant transition hover:bg-white/10"
+          aria-label="Close navigation menu"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-2">
+        <a class="focushub-sidebar-link" data-page-link="home.html" href="home.html"><span class="material-symbols-outlined">home</span>Home</a>
+        <a class="focushub-sidebar-link" data-page-link="aboutus.html" href="aboutus.html"><span class="material-symbols-outlined">group</span>About Us</a>
+        <a class="focushub-sidebar-link active" data-page-link="contact.html" href="contact.html"><span class="material-symbols-outlined">mail</span>Contact</a>
+        <a class="focushub-sidebar-link" data-page-link="Dashboard.html" href="Dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+        <a class="focushub-sidebar-link" data-page-link="TaskManager.html" href="TaskManager.html"><span class="material-symbols-outlined">task_alt</span>Task Manager</a>
+        <a class="focushub-sidebar-link" data-page-link="Celender.html" href="Celender.html"><span class="material-symbols-outlined">calendar_today</span>Calendar</a>
+        <a class="focushub-sidebar-link" data-page-link="Planner.html" href="Planner.html"><span class="material-symbols-outlined">event_note</span>Planner</a>
+        <a class="focushub-sidebar-link" data-page-link="Statistic.html" href="Statistic.html"><span class="material-symbols-outlined">query_stats</span>Statistics</a>
+      </nav>
+      <div class="mt-auto rounded-xl border border-white/30 bg-white/60 p-4">
+        <p class="font-label-bold text-label-bold text-primary">Stay in flow</p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Use the tools below to keep every task in view.</p>
+      </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main
+      class="flex-grow flex flex-col items-center justify-center py-stack-lg px-gutter md:px-container-margin w-full max-w-7xl mx-auto"
+    >
+      <div class="text-center mb-stack-lg max-w-2xl mx-auto">
+        <h1
+          class="font-display-lg text-display-lg text-primary mb-stack-sm md:text-display-lg text-headline-lg-mobile"
+        >
+          Get in Touch
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant">
+          We'd love to hear from you. Whether you have a question, feedback, or
+          just want to say hi, drop us a line below.
+        </p>
+      </div>
+      <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-stack-md">
+        <!-- Contact Form (Glassmorphic Card) -->
+        <div
+          class="md:col-span-7 lg:col-span-8 glass-panel rounded-xl p-container-margin relative overflow-hidden"
+        >
+          <div
+            class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"
+          ></div>
+          <h2
+            class="font-headline-lg text-title-md text-on-surface mb-stack-md"
+          >
+            Send a Message
+          </h2>
+          <form class="flex flex-col gap-stack-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-sm">
+              <div class="flex flex-col gap-base">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  for="firstName"
+                  >First Name</label
+                >
+                <input
+                  class="input-field p-3 font-body-sm text-body-sm text-on-surface"
+                  id="firstName"
+                  placeholder="Jane"
+                  type="text"
+                />
+              </div>
+              <div class="flex flex-col gap-base">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  for="lastName"
+                  >Last Name</label
+                >
+                <input
+                  class="input-field p-3 font-body-sm text-body-sm text-on-surface"
+                  id="lastName"
+                  placeholder="Doe"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col gap-base mt-base">
+              <label
+                class="font-label-bold text-label-bold text-on-surface-variant"
+                for="email"
+                >Email Address</label
+              >
+              <input
+                class="input-field p-3 font-body-sm text-body-sm text-on-surface"
+                id="email"
+                placeholder="jane@example.com"
+                type="email"
+              />
+            </div>
+            <div class="flex flex-col gap-base mt-base">
+              <label
+                class="font-label-bold text-label-bold text-on-surface-variant"
+                for="subject"
+                >Subject</label
+              >
+              <select
+                class="input-field p-3 font-body-sm text-body-sm text-on-surface appearance-none bg-no-repeat bg-right pr-10"
+                id="subject"
+                style="
+                  background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23002020' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'&gt;&lt;polyline points='6 9 12 15 18 9'&gt;&lt;/polyline&gt;&lt;/svg&gt;&quot;);
+                  background-position-x: calc(100% - 12px);
+                "
+              >
+                <option>General Inquiry</option>
+                <option>Support Request</option>
+                <option>Feedback</option>
+                <option>Partnership</option>
+              </select>
+            </div>
+            <div class="flex flex-col gap-base mt-base">
+              <label
+                class="font-label-bold text-label-bold text-on-surface-variant"
+                for="message"
+                >Message</label
+              >
+              <textarea
+                class="input-field p-3 font-body-sm text-body-sm text-on-surface resize-none"
+                id="message"
+                placeholder="How can we help you today?"
+                rows="5"
+              ></textarea>
+            </div>
+            <button
+              class="mt-stack-sm bg-primary text-on-primary font-title-md text-body-lg py-3 px-6 rounded-lg shadow-[0px_10px_30px_-5px_rgba(0,77,77,0.2)] hover:shadow-[0px_15px_35px_-5px_rgba(0,77,77,0.3)] hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto self-start flex items-center justify-center gap-2"
+              type="button"
+            >
+              Send Message
+              <span class="material-symbols-outlined" style="font-size: 1.2em"
+                >send</span
+              >
+            </button>
+          </form>
+        </div>
+        <!-- Contact Details & Socials (Glassmorphic Side Panel) -->
+        <div class="md:col-span-5 lg:col-span-4 flex flex-col gap-stack-md">
+          <div
+            class="glass-panel rounded-xl p-container-margin relative overflow-hidden flex-grow"
+          >
+            <div
+              class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"
+            ></div>
+            <h3
+              class="font-headline-lg text-title-md text-on-surface mb-stack-md"
+            >
+              Contact Information
+            </h3>
+            <ul class="flex flex-col gap-stack-sm">
+              <li class="flex items-start gap-gutter">
+                <div
+                  class="bg-surface-container-high p-2 rounded-full text-secondary flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined">location_on</span>
+                </div>
+                <div>
+                  <h4
+                    class="font-label-bold text-label-bold text-on-surface-variant mb-1"
+                  >
+                    Our Office
+                  </h4>
+                  <p class="font-body-sm text-body-sm text-on-surface">
+                    123 Productivity Way, Suite 400<br />Innovation District, CA
+                    90210
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start gap-gutter">
+                <div
+                  class="bg-surface-container-high p-2 rounded-full text-secondary flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined">mail</span>
+                </div>
+                <div>
+                  <h4
+                    class="font-label-bold text-label-bold text-on-surface-variant mb-1"
+                  >
+                    Email Us
+                  </h4>
+                  <p class="font-body-sm text-body-sm text-on-surface">
+                    <a
+                      class="hover:text-primary transition-colors"
+                      href="mailto:hello@focushub.app"
+                      >hello@focushub.app</a
+                    >
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start gap-gutter">
+                <div
+                  class="bg-surface-container-high p-2 rounded-full text-secondary flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined">phone</span>
+                </div>
+                <div>
+                  <h4
+                    class="font-label-bold text-label-bold text-on-surface-variant mb-1"
+                  >
+                    Call Us
+                  </h4>
+                  <p class="font-body-sm text-body-sm text-on-surface">
+                    <a
+                      class="hover:text-primary transition-colors"
+                      href="tel:+15551234567"
+                      >+1 (555) 123-4567</a
+                    >
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <div class="mt-stack-lg">
+              <h4
+                class="font-label-bold text-label-bold text-on-surface-variant mb-stack-sm uppercase tracking-wider"
+              >
+                Connect With Us
+              </h4>
+              <div class="flex gap-gutter">
+                <a
+                  aria-label="Twitter"
+                  class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-300"
+                  href="#"
+                >
+                  <span class="material-symbols-outlined">flutter_dash</span>
+                </a>
+                <a
+                  aria-label="LinkedIn"
+                  class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-300"
+                  href="#"
+                >
+                  <span class="material-symbols-outlined">work</span>
+                </a>
+                <a
+                  aria-label="Instagram"
+                  class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-300"
+                  href="#"
+                >
+                  <span class="material-symbols-outlined">photo_camera</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer (Shared Component) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const trigger = document.querySelector("[data-sidebar-trigger]");
+        const backdrop = document.getElementById("focushub-sidebar-backdrop");
+        const sidebar = document.getElementById("focushub-sidebar");
+        const closeButton = document.getElementById("focushub-sidebar-close");
+        const currentPage = window.location.pathname.split("/").pop() || "home.html";
+
+        const openSidebar = () => {
+          sidebar?.classList.remove("-translate-x-full");
+          backdrop?.classList.remove("hidden");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        const closeSidebar = () => {
+          sidebar?.classList.add("-translate-x-full");
+          backdrop?.classList.add("hidden");
+          document.body.classList.remove("overflow-hidden");
+        };
+
+        trigger?.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSidebar();
+        });
+
+        backdrop?.addEventListener("click", closeSidebar);
+        closeButton?.addEventListener("click", closeSidebar);
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeSidebar();
+          }
+        });
+
+        document.querySelectorAll("[data-page-link]").forEach((link) => {
+          const targetPage = link.getAttribute("data-page-link");
+          if (targetPage === currentPage) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

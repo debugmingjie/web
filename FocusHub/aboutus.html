@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="light" lang="en" style="">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title class="">About Us | FocusHub</title>
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "secondary-container": "#fc8a40",
+              "surface-dim": "#a8e5e4",
+              "secondary-fixed": "#ffdbc9",
+              "surface-container-low": "#c1fffe",
+              "on-primary-container": "#fffbff",
+              "inverse-on-surface": "#befcfb",
+              "surface-tint": "#bd0042",
+              "tertiary-fixed": "#ffe087",
+              "on-secondary-container": "#672c00",
+              tertiary: "#735c00",
+              "tertiary-container": "#cfa600",
+              primary: "#b90040",
+              "on-tertiary-container": "#4e3d00",
+              "surface-container": "#bbf9f8",
+              "on-error": "#ffffff",
+              "inverse-primary": "#ffb2ba",
+              "surface-container-high": "#b6f3f3",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed": "#331200",
+              "on-primary-fixed": "#400011",
+              "inverse-surface": "#003737",
+              "on-surface-variant": "#5c3f42",
+              "primary-container": "#e31754",
+              "surface-bright": "#e2fffe",
+              "on-tertiary": "#ffffff",
+              secondary: "#9b4500",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#ffb68d",
+              "on-tertiary-fixed": "#231a00",
+              "on-secondary-fixed-variant": "#763300",
+              "primary-fixed": "#ffd9dc",
+              "outline-variant": "#e5bdc0",
+              outline: "#906f72",
+              error: "#ba1a1a",
+              "primary-fixed-dim": "#ffb2ba",
+              "tertiary-fixed-dim": "#eec21e",
+              "on-secondary": "#ffffff",
+              "on-surface": "#002020",
+              background: "#e2fffe",
+              "on-background": "#002020",
+              surface: "#e2fffe",
+              "surface-container-highest": "#b0eeed",
+              "on-primary-fixed-variant": "#910030",
+              "surface-variant": "#b0eeed",
+              "on-tertiary-fixed-variant": "#574500",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "12px",
+              gutter: "16px",
+              base: "8px",
+              "container-margin": "24px",
+              "stack-md": "24px",
+              "stack-lg": "48px",
+            },
+            fontFamily: {
+              "display-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "label-bold": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "title-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+              "headline-lg-mobile": [
+                "24px",
+                { lineHeight: "1.3", fontWeight: "700" },
+              ],
+              "label-bold": [
+                "12px",
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "700" },
+              ],
+              "headline-lg": ["32px", { lineHeight: "1.3", fontWeight: "700" }],
+              "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "title-md": ["20px", { lineHeight: "1.4", fontWeight: "600" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .icon-filled {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      .glass-panel {
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0px 10px 30px -5px rgba(0, 77, 77, 0.1);
+      }
+
+      .focushub-nav-link {
+        font-size: 16px;
+        font-weight: 600;
+        color: theme("colors.on-surface-variant");
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+      }
+
+      .focushub-nav-link:hover,
+      .focushub-nav-link.active {
+        color: theme("colors.primary");
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .focushub-sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.8rem 0.9rem;
+        border-radius: 0.9rem;
+        color: theme("colors.on-surface-variant");
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .focushub-sidebar-link:hover,
+      .focushub-sidebar-link.active {
+        background-color: rgba(185, 0, 64, 0.1);
+        color: theme("colors.primary");
+        transform: translateX(4px);
+      }
+
+      .focushub-sidebar-link .material-symbols-outlined {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background min-h-screen flex flex-col font-body-lg"
+  >
+    <header
+      class="sticky top-0 z-50 flex justify-between items-center px-gutter w-full h-16 bg-surface/70 dark:bg-surface-variant/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_10px_30px_-5px_rgba(0,77,77,0.1)]"
+    >
+      <div class="flex items-center gap-container-margin">
+        <button
+          type="button"
+          data-sidebar-trigger
+          class="flex items-center gap-3 rounded-full px-2 py-1.5 text-left transition-all duration-300 hover:bg-white/10"
+          aria-label="Open navigation menu"
+        >
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary font-display-lg text-title-md shadow-[0px_10px_30px_-5px_rgba(185,0,64,0.3)]">FH</span>
+          <span class="font-display-lg text-headline-lg text-primary dark:text-primary-fixed tracking-tight">FocusHub</span>
+        </button>
+        <div class="hidden md:flex gap-stack-md">
+          <a class="focushub-nav-link" data-page-link="home.html" href="home.html">Home</a>
+          <a class="focushub-nav-link active" data-page-link="aboutus.html" href="aboutus.html">About Us</a>
+          <a class="focushub-nav-link" data-page-link="contact.html" href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-base">
+        <button class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-primary dark:text-primary-fixed">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-primary dark:text-primary-fixed">
+          <span class="material-symbols-outlined">settings</span>
+        </button>
+        <img
+          alt="User profile avatar"
+          class="w-8 h-8 rounded-full border border-white/20"
+          data-alt="A small, stylized circular avatar image showing a minimalist geometric portrait of a person with a bright pink background, representing a generic user profile icon in a modern, vibrant application design."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNUOyzuqNKwK1sBDG2J2NpEnJoxJSAKwFXvfvA3lWTd5J-akBhr1_tlR_WmIb17VEt-ScrMPZUQn1pGapkaGDbaRpinNKr_uX7QcBtw9raFWUdFgLqEFN7Lb7_39qFEq8Ee3mBYA02ptqKT7Y1hcMFXEyJX_B9BQjuUmxadwibalT9q5S3pWLYqQaBSausnaf2weF2sz5ycuuEYeJ5Lu6yEc8Dg78bzHWEAT5g2FNgl8fDpfquQE96"
+        />
+      </div>
+    </header>
+
+    <div
+      id="focushub-sidebar-backdrop"
+      class="fixed inset-0 z-[55] hidden bg-[rgba(0,32,32,0.35)] backdrop-blur-[2px]"
+    ></div>
+
+    <aside
+      id="focushub-sidebar"
+      class="fixed left-0 top-0 z-[60] flex h-full w-72 -translate-x-full flex-col border-r border-white/20 bg-surface/95 p-5 shadow-[0px_20px_50px_-10px_rgba(0,77,77,0.2)] transition-transform duration-300"
+    >
+      <div class="mb-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary font-display-lg text-title-md">FH</span>
+          <div>
+            <p class="font-display-lg text-title-md text-primary">FocusHub</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Your calm productivity hub</p>
+          </div>
+        </div>
+        <button
+          id="focushub-sidebar-close"
+          type="button"
+          class="rounded-full p-2 text-on-surface-variant transition hover:bg-white/10"
+          aria-label="Close navigation menu"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-2">
+        <a class="focushub-sidebar-link" data-page-link="home.html" href="home.html"><span class="material-symbols-outlined">home</span>Home</a>
+        <a class="focushub-sidebar-link active" data-page-link="aboutus.html" href="aboutus.html"><span class="material-symbols-outlined">group</span>About Us</a>
+        <a class="focushub-sidebar-link" data-page-link="contact.html" href="contact.html"><span class="material-symbols-outlined">mail</span>Contact</a>
+        <a class="focushub-sidebar-link" data-page-link="Dashboard.html" href="Dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+        <a class="focushub-sidebar-link" data-page-link="TaskManager.html" href="TaskManager.html"><span class="material-symbols-outlined">task_alt</span>Task Manager</a>
+        <a class="focushub-sidebar-link" data-page-link="Celender.html" href="Celender.html"><span class="material-symbols-outlined">calendar_today</span>Calendar</a>
+        <a class="focushub-sidebar-link" data-page-link="Planner.html" href="Planner.html"><span class="material-symbols-outlined">event_note</span>Planner</a>
+        <a class="focushub-sidebar-link" data-page-link="Statistic.html" href="Statistic.html"><span class="material-symbols-outlined">query_stats</span>Statistics</a>
+      </nav>
+      <div class="mt-auto rounded-xl border border-white/30 bg-white/60 p-4">
+        <p class="font-label-bold text-label-bold text-primary">Stay in flow</p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Use the tools below to keep every task in view.</p>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col lg:flex-row">
+      <!-- SideNav (Mobile Only for this example, though prompt implies destination. Given "About Us" usually isn't a core app tool, I'll keep the top nav as the anchor and present the canvas.) -->
+      <div
+        class="flex-1 w-full max-w-7xl mx-auto px-gutter lg:px-container-margin py-stack-lg flex flex-col gap-stack-lg"
+      >
+        <!-- Hero Section -->
+        <section class="flex flex-col items-center text-center gap-stack-md">
+          <h1
+            class="font-display-lg text-display-lg md:text-display-lg text-primary"
+          >
+            Squeeze the Day.
+          </h1>
+          <p
+            class="font-body-lg text-title-md max-w-2xl text-on-surface-variant"
+          >
+            We build vibrant, high-energy productivity tools designed to make
+            task management feel less like a chore and more like a tropical
+            breeze.
+          </p>
+          <div
+            class="w-full h-64 md:h-96 rounded-xl overflow-hidden glass-panel relative mt-stack-md"
+          >
+            <img
+              class="w-full h-full object-cover absolute inset-0"
+              data-alt="A wide, bright, high-key photograph of a modern, minimal desk setup. The desk features a sleek laptop displaying a colorful dashboard, surrounded by lush green tropical plants, a bright pink notebook, and a glass of refreshing citrus water. The lighting is sunny and optimistic, reflecting a productive yet relaxed workspace."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnLNWrPHo44X-P6meLF0nzy4k28rv4VqpWYZm-grEalMmCJicXK_rVwHZvk17vs3oF0Bs4WDuz6b9e9lCOD1KqCRzh9-gF6tDN1v2FCn0shj0rqAdKY_QN1NngJ3X_GmrK_vX0a1qwq7wLC3R10j6dOUz8DZboAXsEUNCpvQOQ1FM-fEA04wBQkXxI2eLxATRQ-lEdjvIIijNy1ECnFeHAkAgZpPuCP3S9eYqmUKnaFH2kCacEUxDq"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent flex items-end p-container-margin"
+            >
+              <span
+                class="font-headline-lg text-headline-lg text-primary drop-shadow-md"
+                >Refreshing Productivity.</span
+              >
+            </div>
+          </div>
+        </section>
+        <!-- Mission & Audience Bento -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+          <div
+            class="glass-panel p-container-margin rounded-xl flex flex-col gap-base border-l-4 border-l-primary"
+          >
+            <span
+              class="material-symbols-outlined text-primary text-4xl mb-2 icon-filled"
+              >rocket_launch</span
+            >
+            <h2 class="font-headline-lg text-title-md text-on-surface">
+              Our Mission
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">
+              To transform the monotonous nature of daily task management into a
+              vibrant, sensory experience. We believe that when your tools feel
+              alive, your ideas will too.
+            </p>
+          </div>
+          <div
+            class="glass-panel p-container-margin rounded-xl flex flex-col gap-base border-l-4 border-l-secondary-container"
+          >
+            <span
+              class="material-symbols-outlined text-secondary-container text-4xl mb-2 icon-filled"
+              >groups</span
+            >
+            <h2 class="font-headline-lg text-title-md text-on-surface">
+              Who We Serve
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">
+              Built for creative professionals, ambitious students, and anyone
+              who wants their workflow to feel energetic, optimistic, and
+              refreshingly clear.
+            </p>
+          </div>
+        </section>
+        <!-- Values -->
+        <section class="flex flex-col gap-stack-md mt-stack-lg">
+          <h2 class="font-display-lg text-headline-lg text-center text-primary">
+            Core Flavors
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-gutter">
+            <div
+              class="glass-panel p-gutter rounded-lg flex flex-col items-center text-center gap-base transition-transform hover:-translate-y-1 duration-300"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2"
+              >
+                <span class="material-symbols-outlined text-primary">bolt</span>
+              </div>
+              <h3 class="font-label-bold text-title-md text-on-surface">
+                High Energy
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Fast, responsive, and visually stimulating to keep momentum
+                high.
+              </p>
+            </div>
+            <div
+              class="glass-panel p-gutter rounded-lg flex flex-col items-center text-center gap-base transition-transform hover:-translate-y-1 duration-300"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center mb-2"
+              >
+                <span class="material-symbols-outlined text-secondary"
+                  >wb_sunny</span
+                >
+              </div>
+              <h3 class="font-label-bold text-title-md text-on-surface">
+                Optimistic
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Every completed task is a victory. We celebrate your progress.
+              </p>
+            </div>
+            <div
+              class="glass-panel p-gutter rounded-lg flex flex-col items-center text-center gap-base transition-transform hover:-translate-y-1 duration-300"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center mb-2"
+              >
+                <span class="material-symbols-outlined text-tertiary"
+                  >water_drop</span
+                >
+              </div>
+              <h3 class="font-label-bold text-title-md text-on-surface">
+                Refreshing
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Clean layouts and heavy whitespace reduce cognitive load.
+              </p>
+            </div>
+          </div>
+        </section>
+        <!-- Team Section -->
+        <section class="flex flex-col gap-stack-md mt-stack-lg mb-stack-lg">
+          <h2 class="font-display-lg text-headline-lg text-center text-primary">
+            Meet the Blenders
+          </h2>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mt-stack-sm"
+          >
+            <!-- Member 1 -->
+            <div
+              class="glass-panel rounded-xl overflow-hidden flex flex-col group"
+            >
+              <div
+                class="h-48 w-full bg-surface-container-high relative overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  data-alt="A portrait of a cheerful young professional woman with curly hair, smiling brightly. She is wearing a modern teal blazer, set against a vibrant, soft-focus pink and orange gradient background that reflects a sunny, tropical aesthetic."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwyRTSC2qCMRIJze18yoWrIDk5mAnYuouLvm3uKz3oUeLcXZ0WDDkAzJlskhL202mArUiLPa77nQohdnH-ub8zm6y8rl2DYORmSvko30rr1pgvjRuz18Qmr1lVlocb6Kmg536zaEtBh-EIMMMGaHpjX46jvjhArGva5G-llGeDnRQSlPdNfELdJxqAuuQUDap9Ct7RZFdCMPg1twAVIr6eKha0EfAhi4KnvkSUxFJpfpcsWH_4BgsS"
+                />
+              </div>
+              <div class="p-gutter flex flex-col items-center text-center">
+                <h4 class="font-headline-lg text-title-md text-on-surface">
+                  Alex Rivera
+                </h4>
+                <span class="font-label-bold text-label-bold text-primary mt-1"
+                  >Founder &amp; CEO</span
+                >
+              </div>
+            </div>
+            <!-- Member 2 -->
+            <div
+              class="glass-panel rounded-xl overflow-hidden flex flex-col group"
+            >
+              <div
+                class="h-48 w-full bg-surface-container-high relative overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  data-alt="A portrait of a focused young man with glasses, wearing a casual light pink button-down shirt. He has a warm smile. The background is a clean, bright minimalist office setting with a hint of tropical greenery in the soft-focus background."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt_9xp132_pMmtK6yoO7zGpx5P1gLFb68o02MKVzsxuvZrZgh117R3m39M1GlRlp8fFmuN8xsEjDnJXTi_58Rke-8ioeisyDfjlyq0j-UQE_uWTbbVscxsLGnmkqJrq5z6JBXsRY4VmdxU1qgyy0fbu8LYySDZUGavdUYn2R8Cjsglz2fZZPTnCPjJBOZT1YBvPFcOOCEl4cDtHvXI_sRKxgpD2usC9Lk4sbqzZ2m82fk0VhNSK9c1"
+                />
+              </div>
+              <div class="p-gutter flex flex-col items-center text-center">
+                <h4 class="font-headline-lg text-title-md text-on-surface">
+                  Sam Chen
+                </h4>
+                <span
+                  class="font-label-bold text-label-bold text-secondary mt-1"
+                  >Lead Designer</span
+                >
+              </div>
+            </div>
+            <!-- Member 3 -->
+            <div
+              class="glass-panel rounded-xl overflow-hidden flex flex-col group"
+            >
+              <div
+                class="h-48 w-full bg-surface-container-high relative overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  data-alt="A portrait of a vibrant woman with short dark hair, laughing genuinely. She is wearing a yellow top. The background features a soft, frosted glass effect over bright teal and pink colors, capturing an energetic and modern tech vibe."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAry20mlG3OpfqkSEAfL5DgHTboy4K3tKtuOUYD-MKeOtxvXwK8upj7gNjb_mA9PrNTMEWAqOGc8O77jjwbvu9JqLFbMO7EnyHIp-bqLH940KRNmaUjeNnfHhW08_IGDaFsGKu1Je3ObHzZOXOpwAvri3Rm1k6nzHu4UmjksdjkvrsGFirI-BkGSnXq0zt1hhdCfjbKg_QyrStih5FlJh3Rpmv4VIWYyneBMaOBx_wiqO5K4whzuVIl"
+                />
+              </div>
+              <div class="p-gutter flex flex-col items-center text-center">
+                <h4 class="font-headline-lg text-title-md text-on-surface">
+                  Jordan Lee
+                </h4>
+                <span class="font-label-bold text-label-bold text-tertiary mt-1"
+                  >Engineering Lead</span
+                >
+              </div>
+            </div>
+            <!-- Member 4 -->
+            <div
+              class="glass-panel rounded-xl overflow-hidden flex flex-col group"
+            >
+              <div
+                class="h-48 w-full bg-surface-container-high relative overflow-hidden"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  data-alt="A portrait of an energetic young man with a slight beard, smiling confidently at the camera. He is wearing a crisp white t-shirt. The background is a bright, sunlit room with subtle pastel orange and teal tones, fitting a lively startup environment."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsv4sV6hhmDM6t-LMbA3yTNXMsUfnNADF8zpfosdhjTXOsK5X-uNh5-qbuKRx50YsBq-BJVSyee1SjvKNmQ3kgLyzrd10zYx7k8qL3vSVimdZXVcB6ZGAnoBNHExAgOF2CrFzIwZHZfGHQ0gQ9eYhRvq--C8wibiUP2yTnT0NsRKkpjK_CN39hZWvJITKkrPGGmx66lPtj5d5BfQqm-yVfVRI2crW9pDHiFOHqAZamWfZ_URuVk5-b"
+                />
+              </div>
+              <div class="p-gutter flex flex-col items-center text-center">
+                <h4 class="font-headline-lg text-title-md text-on-surface">
+                  Casey Smith
+                </h4>
+                <span class="font-label-bold text-label-bold text-primary mt-1"
+                  >Community Mgr</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Footer -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const trigger = document.querySelector("[data-sidebar-trigger]");
+        const backdrop = document.getElementById("focushub-sidebar-backdrop");
+        const sidebar = document.getElementById("focushub-sidebar");
+        const closeButton = document.getElementById("focushub-sidebar-close");
+        const currentPage = window.location.pathname.split("/").pop() || "home.html";
+
+        const openSidebar = () => {
+          sidebar?.classList.remove("-translate-x-full");
+          backdrop?.classList.remove("hidden");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        const closeSidebar = () => {
+          sidebar?.classList.add("-translate-x-full");
+          backdrop?.classList.add("hidden");
+          document.body.classList.remove("overflow-hidden");
+        };
+
+        trigger?.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSidebar();
+        });
+
+        backdrop?.addEventListener("click", closeSidebar);
+        closeButton?.addEventListener("click", closeSidebar);
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeSidebar();
+          }
+        });
+
+        document.querySelectorAll("[data-page-link]").forEach((link) => {
+          const targetPage = link.getAttribute("data-page-link");
+          if (targetPage === currentPage) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

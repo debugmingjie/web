@@ -1,0 +1,670 @@
+<!doctype html>
+
+<html class="light" lang="en" style="">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title class="">FocusHub - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#002020",
+              "tertiary-fixed": "#ffe087",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#763300",
+              error: "#ba1a1a",
+              primary: "#b90040",
+              "tertiary-fixed-dim": "#eec21e",
+              "secondary-container": "#fc8a40",
+              "on-surface-variant": "#5c3f42",
+              "surface-container-low": "#c1fffe",
+              "surface-dim": "#a8e5e4",
+              surface: "#e2fffe",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#4e3d00",
+              "inverse-surface": "#003737",
+              "on-primary": "#ffffff",
+              outline: "#906f72",
+              "on-error-container": "#93000a",
+              background: "#e2fffe",
+              tertiary: "#735c00",
+              "surface-container-high": "#b6f3f3",
+              "surface-variant": "#b0eeed",
+              "primary-fixed-dim": "#ffb2ba",
+              "on-tertiary-fixed-variant": "#574500",
+              "primary-fixed": "#ffd9dc",
+              "primary-container": "#e31754",
+              "secondary-fixed-dim": "#ffb68d",
+              "on-tertiary-fixed": "#231a00",
+              "inverse-on-surface": "#befcfb",
+              "on-primary-fixed": "#400011",
+              "secondary-fixed": "#ffdbc9",
+              secondary: "#9b4500",
+              "on-secondary-container": "#672c00",
+              "on-primary-fixed-variant": "#910030",
+              "on-surface": "#002020",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#cfa600",
+              "inverse-primary": "#ffb2ba",
+              "surface-container": "#bbf9f8",
+              "surface-container-highest": "#b0eeed",
+              "surface-bright": "#e2fffe",
+              "on-secondary-fixed": "#331200",
+              "on-primary-container": "#fffbff",
+              "outline-variant": "#e5bdc0",
+              "surface-tint": "#bd0042",
+              "on-tertiary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-md": "24px",
+              gutter: "16px",
+              base: "8px",
+              "stack-lg": "48px",
+              "container-margin": "24px",
+              "stack-sm": "12px",
+            },
+            fontFamily: {
+              "body-lg": ["Plus Jakarta Sans"],
+              "title-md": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "label-bold": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "body-lg": [
+                "16px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "title-md": [
+                "20px",
+                {
+                  lineHeight: "1.4",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg-mobile": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "700",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "label-bold": [
+                "12px",
+                {
+                  lineHeight: "1",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "700",
+                },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-panel {
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0px 10px 30px -5px rgba(0, 77, 77, 0.1);
+      }
+
+      body {
+        background-color: theme("colors.surface");
+        color: theme("colors.on-surface");
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      .focushub-nav-link {
+        font-size: 16px;
+        font-weight: 600;
+        color: theme("colors.on-surface-variant");
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+      }
+
+      .focushub-nav-link:hover,
+      .focushub-nav-link.active {
+        color: theme("colors.primary");
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .focushub-sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.8rem 0.9rem;
+        border-radius: 0.9rem;
+        color: theme("colors.on-surface-variant");
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .focushub-sidebar-link:hover,
+      .focushub-sidebar-link.active {
+        background-color: rgba(185, 0, 64, 0.1);
+        color: theme("colors.primary");
+        transform: translateX(4px);
+      }
+
+      .focushub-sidebar-link .material-symbols-outlined {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col font-sans overflow-x-hidden font-body-lg text-body-lg bg-surface text-on-surface"
+  >
+    <header
+      class="hidden md:flex sticky top-0 z-50 justify-between items-center px-gutter w-full h-16 bg-surface/70 dark:bg-surface-variant/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_10px_30px_-5px_rgba(0,77,77,0.1)]"
+    >
+      <div class="flex items-center gap-container-margin">
+        <button
+          type="button"
+          data-sidebar-trigger
+          class="flex items-center gap-3 rounded-full px-2 py-1.5 text-left transition-all duration-300 hover:bg-white/10"
+          aria-label="Open navigation menu"
+        >
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary font-display-lg text-title-md shadow-[0px_10px_30px_-5px_rgba(185,0,64,0.3)]">FH</span>
+          <span class="font-display-lg text-headline-lg text-primary dark:text-primary-fixed tracking-tight">FocusHub</span>
+        </button>
+        <div class="flex gap-stack-md ml-stack-lg">
+          <a class="focushub-nav-link" data-page-link="home.html" href="home.html">Home</a>
+          <a class="focushub-nav-link" data-page-link="aboutus.html" href="aboutus.html">About Us</a>
+          <a class="focushub-nav-link" data-page-link="contact.html" href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-base">
+        <button class="text-primary dark:text-primary-fixed hover:bg-white/10 p-2 rounded-full transition-all duration-300 active:scale-95">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+        <button class="text-primary dark:text-primary-fixed hover:bg-white/10 p-2 rounded-full transition-all duration-300 active:scale-95">
+          <span class="material-symbols-outlined" data-icon="settings">settings</span>
+        </button>
+        <img
+          alt="User profile avatar"
+          class="w-8 h-8 rounded-full ml-base border border-outline-variant"
+          data-alt="A small circular avatar showing a professional, cheerful person in a bright tropical setting, well lit."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdEdhvvuiJRhFNagIhwQneCOj4xGhHPNHDpfCR5C2Yf53mm4qPjH3sYK0kSPjTCXA3mkMRZlFLil40SWj5HDN9eo7NUYSpggZqFX_PSv-7dRgyzMonod6LtrbYdt1ywPk2v1C5DRiMvR762a8QbHVzpLu3w8rXQqqGQ2euCa7q453aknRkVcC-lH8l7RllhETVpSR_283qte7oNII2Y4C4qvJZV_ZLhaq46DMTgwZFwZ4OX6B-paF2"
+        />
+      </div>
+    </header>
+
+    <div
+      id="focushub-sidebar-backdrop"
+      class="fixed inset-0 z-[55] hidden bg-[rgba(0,32,32,0.35)] backdrop-blur-[2px]"
+    ></div>
+
+    <aside
+      id="focushub-sidebar"
+      class="fixed left-0 top-0 z-[60] flex h-full w-72 -translate-x-full flex-col border-r border-white/20 bg-surface/95 p-5 shadow-[0px_20px_50px_-10px_rgba(0,77,77,0.2)] transition-transform duration-300"
+    >
+      <div class="mb-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary font-display-lg text-title-md">FH</span>
+          <div>
+            <p class="font-display-lg text-title-md text-primary">FocusHub</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Your calm productivity hub</p>
+          </div>
+        </div>
+        <button
+          id="focushub-sidebar-close"
+          type="button"
+          class="rounded-full p-2 text-on-surface-variant transition hover:bg-white/10"
+          aria-label="Close navigation menu"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-2">
+        <a class="focushub-sidebar-link" data-page-link="home.html" href="home.html"><span class="material-symbols-outlined">home</span>Home</a>
+        <a class="focushub-sidebar-link" data-page-link="aboutus.html" href="aboutus.html"><span class="material-symbols-outlined">group</span>About Us</a>
+        <a class="focushub-sidebar-link" data-page-link="contact.html" href="contact.html"><span class="material-symbols-outlined">mail</span>Contact</a>
+        <a class="focushub-sidebar-link active" data-page-link="Dashboard.html" href="Dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+        <a class="focushub-sidebar-link" data-page-link="TaskManager.html" href="TaskManager.html"><span class="material-symbols-outlined">task_alt</span>Task Manager</a>
+        <a class="focushub-sidebar-link" data-page-link="Celender.html" href="Celender.html"><span class="material-symbols-outlined">calendar_today</span>Calendar</a>
+        <a class="focushub-sidebar-link" data-page-link="Planner.html" href="Planner.html"><span class="material-symbols-outlined">event_note</span>Planner</a>
+        <a class="focushub-sidebar-link" data-page-link="Statistic.html" href="Statistic.html"><span class="material-symbols-outlined">query_stats</span>Statistics</a>
+      </nav>
+      <div class="mt-auto rounded-xl border border-white/30 bg-white/60 p-4">
+        <p class="font-label-bold text-label-bold text-primary">Stay in flow</p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Use the tools below to keep every task in view.</p>
+      </div>
+    </aside>
+    <div class="flex flex-1 relative">
+      <!-- SideNavBar (Desktop Only) -->
+      <nav
+        class="hidden md:flex flex-col p-4 fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-lowest/70 backdrop-blur-xl shadow-md border-r border-white/20 z-40"
+      >
+        <div class="mb-stack-lg flex items-center gap-base mt-4 px-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg text-on-primary font-bold"
+          >
+            TP
+          </div>
+          <div>
+            <h1 class="font-display-lg text-title-md text-primary">FocusHub</h1>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              FocusHub Suite
+            </p>
+          </div>
+        </div>
+        <ul
+          class="flex flex-col gap-2 flex-grow font-label-bold text-label-bold"
+        >
+          <!-- Active: Dashboard -->
+          <li class="">
+            <a
+              class="flex items-center gap-base bg-secondary-container/20 text-on-secondary-container rounded-lg p-3 before:content-[''] before:w-1 before:h-6 before:bg-secondary before:rounded-full hover:bg-white/10 transition-all duration-300"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >dashboard</span
+              >
+              Dashboard
+            </a>
+          </li>
+          <li class="">
+            <a
+              class="flex items-center gap-base text-on-surface-variant p-3 hover:bg-surface-container-high/50 rounded-lg hover:translate-x-1 transition-transform"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 0"
+                >task_alt</span
+              >
+              Task Manager
+            </a>
+          </li>
+          <li class="">
+            <a
+              class="flex items-center gap-base text-on-surface-variant p-3 hover:bg-surface-container-high/50 rounded-lg hover:translate-x-1 transition-transform"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 0"
+                >calendar_today</span
+              >
+              Calendar
+            </a>
+          </li>
+          <li class="">
+            <a
+              class="flex items-center gap-base text-on-surface-variant p-3 hover:bg-surface-container-high/50 rounded-lg hover:translate-x-1 transition-transform"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 0"
+                >event_note</span
+              >
+              Planner
+            </a>
+          </li>
+          <li class="">
+            <a
+              class="flex items-center gap-base text-on-surface-variant p-3 hover:bg-surface-container-high/50 rounded-lg hover:translate-x-1 transition-transform"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 0"
+                >query_stats</span
+              >
+              Statistics
+            </a>
+          </li>
+        </ul>
+        <button
+          class="mt-auto w-full py-3 bg-primary text-on-primary rounded-lg font-label-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >add</span
+          >
+          New Task
+        </button>
+      </nav>
+      <!-- Main Content Canvas -->
+      <main
+        class="flex-1 md:ml-64 p-container-margin md:p-stack-lg min-h-screen relative z-10 bg-background text-on-surface"
+      >
+        <!-- Header Section -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-end mb-stack-lg gap-stack-sm"
+        >
+          <div>
+            <h2
+              class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2"
+            >
+              Good morning, Alex!
+            </h2>
+            <p class="text-on-surface-variant flex items-center gap-2">
+              <span
+                class="material-symbols-outlined text-secondary"
+                style="font-variation-settings: &quot;FILL&quot; 0"
+                >wb_sunny</span
+              >
+              <span class="" id="current-date">Sunday, July 5</span>
+            </p>
+          </div>
+          <div class="flex gap-4">
+            <button
+              class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 hover:bg-white/90 transition-colors text-primary font-label-bold text-label-bold"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >bolt</span
+              >
+              Quick Add
+            </button>
+          </div>
+        </div>
+        <!-- Bento Grid Layout -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-gutter md:gap-stack-md"
+        >
+          <!-- Summary Widget (Spans 8 cols) -->
+          <div
+            class="glass-panel rounded-xl p-stack-md md:col-span-8 flex flex-col justify-between"
+          >
+            <div>
+              <h3
+                class="font-title-md text-title-md mb-stack-sm flex items-center gap-2"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >monitoring</span
+                >
+                Weekly Progress
+              </h3>
+              <div class="flex items-end gap-4 mb-stack-md">
+                <span class="font-display-lg text-display-lg text-primary"
+                  >24</span
+                >
+                <span class="text-on-surface-variant pb-2"
+                  >tasks completed</span
+                >
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-2 font-label-bold">
+                <span class="">Overall Completion</span>
+                <span class="text-primary">75%</span>
+              </div>
+              <div
+                class="h-3 w-full bg-inverse-surface/10 rounded-full overflow-hidden"
+              >
+                <div
+                  class="h-full bg-secondary-container rounded-full w-[75%] relative"
+                >
+                  <!-- Subtle shine effect -->
+                  <div
+                    class="absolute top-0 left-0 right-0 h-1/2 bg-white/20 rounded-full"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Urgent Tasks (Spans 4 cols) -->
+          <div
+            class="glass-panel rounded-xl p-stack-md md:col-span-4 flex flex-col"
+          >
+            <h3
+              class="font-title-md text-title-md mb-stack-sm flex items-center gap-2"
+            >
+              <span
+                class="material-symbols-outlined text-primary"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >warning</span
+              >
+              Needs Attention
+            </h3>
+            <ul class="flex flex-col gap-stack-sm mt-2 flex-grow">
+              <li
+                class="p-3 bg-white/50 rounded-lg border-l-4 border-primary flex items-start gap-3 hover:bg-white/80 transition-colors cursor-pointer"
+              >
+                <div
+                  class="mt-1 w-5 h-5 rounded-full border-2 border-primary flex-shrink-0"
+                ></div>
+                <div>
+                  <p class="font-title-md text-[14px] leading-tight">
+                    Review Q3 Marketing Strategy
+                  </p>
+                  <span
+                    class="text-xs text-primary font-label-bold mt-1 inline-block"
+                    >Due Today</span
+                  >
+                </div>
+              </li>
+              <li
+                class="p-3 bg-white/50 rounded-lg border-l-4 border-secondary-container flex items-start gap-3 hover:bg-white/80 transition-colors cursor-pointer"
+              >
+                <div
+                  class="mt-1 w-5 h-5 rounded-full border-2 border-secondary-container flex-shrink-0"
+                ></div>
+                <div>
+                  <p class="font-title-md text-[14px] leading-tight">
+                    Client Sync: Aloha Branding
+                  </p>
+                  <span
+                    class="text-xs text-secondary-container font-label-bold mt-1 inline-block"
+                    >Tomorrow 10 AM</span
+                  >
+                </div>
+              </li>
+            </ul>
+            <button
+              class="mt-4 text-center w-full text-sm font-label-bold text-on-surface-variant hover:text-primary transition-colors"
+            >
+              View all pending
+            </button>
+          </div>
+          <!-- Quick Actions Banner (Full width) -->
+          <div
+            class="md:col-span-12 glass-panel rounded-xl p-stack-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-stack-md"
+          >
+            <!-- Decorative element -->
+            <div
+              class="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"
+            ></div>
+            <div
+              class="absolute -left-10 -bottom-10 w-40 h-40 bg-secondary-container/20 rounded-full blur-2xl"
+            ></div>
+            <div class="relative z-10 flex-1">
+              <h3 class="font-title-md text-title-md mb-2">Jump Right In</h3>
+              <p class="text-on-surface-variant text-sm">
+                Quickly capture ideas or start a focus session.
+              </p>
+            </div>
+            <div class="relative z-10 flex flex-wrap gap-4">
+              <button
+                class="bg-surface/80 hover:bg-white px-6 py-3 rounded-lg border border-white/40 shadow-sm flex items-center gap-2 transition-all font-label-bold text-label-bold text-secondary"
+              >
+                <span
+                  class="material-symbols-outlined"
+                  style="font-variation-settings: &quot;FILL&quot; 0"
+                  >edit_note</span
+                >
+                New Note
+              </button>
+              <button
+                class="bg-surface/80 hover:bg-white px-6 py-3 rounded-lg border border-white/40 shadow-sm flex items-center gap-2 transition-all font-label-bold text-label-bold text-primary"
+              >
+                <span
+                  class="material-symbols-outlined"
+                  style="font-variation-settings: &quot;FILL&quot; 0"
+                  >timer</span
+                >
+                Focus Timer
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- Footer (Mobile Only Navigation fallback) -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full glass-panel flex justify-around p-3 z-50 rounded-t-xl border-t border-white/20"
+    >
+      <a class="flex flex-col items-center gap-1 text-primary" href="#">
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >dashboard</span
+        >
+        <span class="text-[10px] font-label-bold">Home</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 0"
+          >task_alt</span
+        >
+        <span class="text-[10px] font-label-bold">Tasks</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 0"
+          >calendar_today</span
+        >
+        <span class="text-[10px] font-label-bold">Cal</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 0"
+          >query_stats</span
+        >
+        <span class="text-[10px] font-label-bold">Stats</span>
+      </a>
+    </nav>
+    <script>
+      // Simple script to set current date
+      const dateOptions = { weekday: "long", month: "long", day: "numeric" };
+      document.getElementById("current-date").textContent =
+        new Date().toLocaleDateString("en-US", dateOptions);
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const trigger = document.querySelector("[data-sidebar-trigger]");
+        const backdrop = document.getElementById("focushub-sidebar-backdrop");
+        const sidebar = document.getElementById("focushub-sidebar");
+        const closeButton = document.getElementById("focushub-sidebar-close");
+        const currentPage = window.location.pathname.split("/").pop() || "home.html";
+
+        const openSidebar = () => {
+          sidebar?.classList.remove("-translate-x-full");
+          backdrop?.classList.remove("hidden");
+          document.body.classList.add("overflow-hidden");
+        };
+
+        const closeSidebar = () => {
+          sidebar?.classList.add("-translate-x-full");
+          backdrop?.classList.add("hidden");
+          document.body.classList.remove("overflow-hidden");
+        };
+
+        trigger?.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSidebar();
+        });
+
+        backdrop?.addEventListener("click", closeSidebar);
+        closeButton?.addEventListener("click", closeSidebar);
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeSidebar();
+          }
+        });
+
+        document.querySelectorAll("[data-page-link]").forEach((link) => {
+          const targetPage = link.getAttribute("data-page-link");
+          if (targetPage === currentPage) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
