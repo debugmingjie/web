@@ -121,6 +121,25 @@
       };
     </script>
     <style>
+      html {
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      header {
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+      }
+
+      header > div,
+      header nav {
+        flex-shrink: 0;
+      }
+
       .glass-level-1 {
         background-color: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(20px);

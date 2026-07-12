@@ -152,9 +152,25 @@
       };
     </script>
     <style>
+      html {
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+      }
+
       body {
+        overflow-x: hidden;
         background-color: theme("colors.background");
         color: theme("colors.on-background");
+      }
+
+      header {
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+      }
+
+      header > div,
+      header nav {
+        flex-shrink: 0;
       }
 
       .glass-panel {

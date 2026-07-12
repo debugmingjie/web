@@ -124,6 +124,26 @@
         };
       } catch (_e) {}
     </script>
+    <style>
+      html {
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      header {
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+      }
+
+      header > div,
+      header nav {
+        flex-shrink: 0;
+      }
+    </style>
   </head>
   <body
     class="bg-surface text-on-surface min-h-screen font-body-lg flex flex-col"
