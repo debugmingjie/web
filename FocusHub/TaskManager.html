@@ -287,10 +287,20 @@
     <header
       class="md:hidden bg-surface/70 dark:bg-surface-variant/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_10px_30px_-5px_rgba(0,77,77,0.1)] sticky top-0 z-50 flex justify-between items-center px-gutter w-full h-16"
     >
-      <div
-        class="font-display-lg text-headline-lg-mobile text-primary dark:text-primary-fixed tracking-tight"
-      >
-        FocusHub
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          data-sidebar-trigger
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary shadow-[0px_10px_30px_-5px_rgba(185,0,64,0.3)]"
+          aria-label="Open navigation menu"
+        >
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+        <div
+          class="font-display-lg text-headline-lg-mobile text-primary dark:text-primary-fixed tracking-tight"
+        >
+          FocusHub
+        </div>
       </div>
       <div class="flex gap-4 text-primary dark:text-primary-fixed">
         <span
@@ -763,7 +773,7 @@
     </nav>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const trigger = document.querySelector("[data-sidebar-trigger]");
+        const triggers = document.querySelectorAll("[data-sidebar-trigger]");
         const backdrop = document.getElementById("focushub-sidebar-backdrop");
         const sidebar = document.getElementById("focushub-sidebar");
         const closeButton = document.getElementById("focushub-sidebar-close");
@@ -780,9 +790,11 @@
           backdrop?.classList.add("hidden");
         };
 
-        trigger?.addEventListener("click", (event) => {
-          event.preventDefault();
-          openSidebar();
+        triggers.forEach((trigger) => {
+          trigger.addEventListener("click", (event) => {
+            event.preventDefault();
+            openSidebar();
+          });
         });
 
         backdrop?.addEventListener("click", closeSidebar);
