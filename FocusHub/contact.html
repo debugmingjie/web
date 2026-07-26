@@ -242,9 +242,9 @@
   </head>
   <body class="min-h-screen flex flex-col font-body-lg text-body-lg">
     <header
-      class="sticky top-0 z-50 flex justify-between items-center px-gutter w-full h-16 bg-surface/70 dark:bg-surface-variant/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_10px_30px_-5px_rgba(0,77,77,0.1)]"
+      class="sticky top-0 z-50 flex items-center px-gutter w-full h-16 bg-surface/70 dark:bg-surface-variant/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_10px_30px_-5px_rgba(0,77,77,0.1)]"
     >
-      <div class="flex items-center gap-gutter">
+      <div class="flex-1 flex items-center justify-start min-w-0">
         <button
           type="button"
           data-sidebar-trigger
@@ -262,7 +262,12 @@
           >
         </button>
       </div>
-      <div class="flex items-center gap-gutter">
+      <div class="flex-1 flex items-center justify-center min-w-0">
+        <span class="font-display-lg text-headline-lg text-primary dark:text-primary-fixed tracking-tight">
+          About Us
+        </span>
+      </div>
+      <div class="flex-1 flex items-center justify-end gap-gutter min-w-0">
         <button
           aria-label="notifications"
           class="text-primary dark:text-primary-fixed hover:bg-white/10 transition-all duration-300 p-2 rounded-full active:scale-95"
